@@ -4,7 +4,7 @@
     "curly": false,
     "eofline": false,
     "indent": [
-      true,
+      false,
       "spaces"
     ],
     "max-line-length": [
@@ -30,7 +30,7 @@
     "no-unreachable": true,
     "no-use-before-declare": true,
     "one-line": [
-      true,
+      false,
       "check-open-brace",
       "check-catch",
       "check-else",
@@ -47,7 +47,7 @@
     ],
     "variable-name": false,
     "whitespace": [
-      true,
+      false,
       "check-branch",
       "check-decl",
       "check-operator",

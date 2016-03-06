@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   devtool: 'eval-source-map',
   debug:true,
-  entry: { 'vendor': ['./src/vendor.ts'], 'main': ['./src/main.ts'] },
+  entry: { 'vendor': ['./src/vendor.ts'], 'main': ['./src/boot.ts'] },
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',

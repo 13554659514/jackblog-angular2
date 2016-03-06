@@ -4,7 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: { 'vendor': ['./src/vendor.ts'], 'main': ['./src/main.ts'] },
+  entry: { 'vendor': ['./src/vendor.ts'], 'main': ['./src/boot.ts'] },
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
