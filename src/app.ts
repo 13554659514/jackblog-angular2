@@ -3,7 +3,7 @@ import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router'
 import Home from './components/Home'
 import Login from './components/Login'
 import Settings from './components/Settings'
-import AppDownload from './components/Appdownload'
+import AppDownloads from './components/Appdownloads'
 import Article from './components/Article'
 import NotFound from './components/NotFound'
 
@@ -37,7 +37,7 @@ import NotFound from './components/NotFound'
 		{ path: '/', name: 'Home', component: Home },
 		{ path: '/login', name: 'Login', component: Login },
 		{ path: '/settings', name: 'Settings', component: Settings },
-		{ path: '/appdownload', name: 'AppDownload', component: AppDownload },
+    { path: '/appdownloads', name: 'AppDownloads', component: AppDownloads },
 		{ path: '/article/:aid', name: 'Article', component: Article },
 		{ path: '/404', name: 'NotFound', component: NotFound, useAsDefault: true }
 ])

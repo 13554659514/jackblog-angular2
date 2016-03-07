@@ -30,14 +30,12 @@
   },
   "devDependencies": {
     "angular2": "^2.0.0-beta.8",
-    "es6-promise": "^3.1.2",
-    "es6-shim": "^0.33.3",
-    "es7-reflect-metadata": "^1.6.0",
-    "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.5.15",
     "css-loader": "^0.23.1",
     "del": "^2.2.0",
+    "es6-promise": "^3.1.2",
     "es6-promise-loader": "^1.0.1",
+    "es6-shim": "^0.33.3",
+    "es7-reflect-metadata": "^1.6.0",
     "exports-loader": "^0.6.3",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -53,6 +51,7 @@
     "imports-loader": "^0.6.5",
     "open": "0.0.5",
     "raw-loader": "^0.5.1",
+    "rxjs": "5.0.0-beta.2",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.8.1",
@@ -61,9 +60,10 @@
     "tslint-loader": "^2.1.0",
     "typedoc": "^0.3.12",
     "typescript": "1.8.2",
-    "typings": "^0.6.8",
+    "typings": "^0.6.10",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "zone.js": "0.5.15"
   }
 }

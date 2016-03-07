@@ -6,7 +6,7 @@ import * as browser from 'angular2/platform/browser';
 import { ROUTER_PROVIDERS, APP_BASE_HREF } from 'angular2/router'
 import { HTTP_PROVIDERS } from 'angular2/http';
 import { HeroService } from './services/hero.service'
-
+import { youTubeServiceInjectables } from './components/Search/YouTubeSearchComponent'
 /*
  * App Environment Providers
  * providers that only live in certain environment
@@ -28,6 +28,7 @@ export function main() {
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
     HeroService,
+    youTubeServiceInjectables,
     ngCore.provide( APP_BASE_HREF, { useValue: '/' } )
   ])
   .catch(err => console.error(err));
