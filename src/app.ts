@@ -6,10 +6,16 @@ import Settings from './components/Settings'
 import AppDownloads from './components/Appdownloads'
 import Article from './components/Article'
 import NotFound from './components/NotFound'
+//import {ToasterContainerComponent, ToasterService} from './components/toaster'
+//import { ShowToasterService } from './services'
+import 'font-awesome/css/font-awesome.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'jackblog-sass/dist/index.css'
+// import 'angular2-toaster/lib/toaster.css'
 
 @Component({
 	selector: 'app',
-	directives: [...ROUTER_DIRECTIVES],
+  directives: [...ROUTER_DIRECTIVES],
   template: `
   	<header>
   	  <nav>
@@ -41,4 +47,19 @@ import NotFound from './components/NotFound'
 		{ path: '/article/:aid', name: 'Article', component: Article },
 		{ path: '/404', name: 'NotFound', component: NotFound, useAsDefault: true }
 ])
-export class App { }
+export class App {
+  constructor() {}
+  hello(){
+    console.log('hello app')
+  }
+  ngOninit() {
+    //this.toasterService.pop('error', 'title', '你好')
+    // this.showToasterService.showToasterSubject.subscribe((obj:any)=>{
+    //   console.log('来')
+    //   console.log(obj)
+    //   if(obj.type && obj.content){
+    //     this.toasterService.pop(obj.type, '', obj.content)
+    //   }
+    // })
+  }
+}

@@ -6,7 +6,7 @@ import 'es6-promise';
 import 'es7-reflect-metadata';
 import 'zone.js/dist/zone-microtask';
 
-if ('production' === process.env.ENV) {
+if ('production' === process.env.NODE_ENV) {
   // Production
 
   // RxJS

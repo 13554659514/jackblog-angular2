@@ -60,6 +60,6 @@ module.exports = {
     emitErrors: false,
     failOnHint: false
   },
-  //node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
+  node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
 }
 
