@@ -5,3 +5,4 @@
 /// <reference path="browser/ambient/webpack/index.d.ts" />
 /// <reference path="browser/ambient/zone.js/index.d.ts" />
 /// <reference path="browser/definitions/es6-promise/index.d.ts" />
+/// <reference path="browser/definitions/moment/index.d.ts" />

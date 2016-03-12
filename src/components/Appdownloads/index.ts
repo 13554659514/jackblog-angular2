@@ -1,7 +1,16 @@
 import {Component} from 'angular2/core'
+import { MobileAppsModel } from '../../models'
+import { MobileService } from '../../services'
 
 @Component({
-	selector: 'app-download',
-	template: '<h1>app下载 页.</h1>'
+	selector: 'app-downloads',
+	template: require('./index.html')
 })
-export default class AppDownload {}
+export default class AppDownloads {
+	apps: MobileAppsModel
+	constructor( mobileService: MobileService){
+		mobileService.mobileAppsSubject.subscribe((apps: MobileAppsModel) => {
+			this.apps = apps
+		})
+	}
+}

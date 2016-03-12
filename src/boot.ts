@@ -4,11 +4,12 @@
 import * as ngCore from 'angular2/core';
 import * as browser from 'angular2/platform/browser';
 import { ROUTER_PROVIDERS, APP_BASE_HREF } from 'angular2/router'
-import { HTTP_PROVIDERS, BrowserXhr } from 'angular2/http';
+import { HTTP_PROVIDERS, BrowserXhr, Connection } from 'angular2/http';
 import { HeroService } from './services/hero.service'
 import { servicesInjectables } from './services'
 import { ResourceService } from './utils/resources'
 import { CustomBrowserXhr } from './utils/custom.browserxhr'
+import { ShowtoasterService } from './utils/showtoaster'
 
 const ENV_PROVIDERS = [];
 
@@ -28,6 +29,7 @@ export function main() {
     ...ROUTER_PROVIDERS,
     HeroService,
     ResourceService,
+    ShowtoasterService,
     servicesInjectables,
     ngCore.provide( APP_BASE_HREF, { useValue: '/' } ),
     ngCore.provide( BrowserXhr, { useClass: CustomBrowserXhr })

@@ -1,22 +1,8 @@
-import {API_ROOT} from '../config'
 export * from './auth.model'
 export * from './globalval.model'
-
-export class Options {
-  currentPage: number
-  itemsPerPage: number
-  sortName: string
-  tagId: string
-  constructor(currentPage?: number,
-    itemsPerPage?: number,
-    sortName?: string,
-    tagId?: string) {
-    this.currentPage = currentPage || 1
-    this.itemsPerPage = itemsPerPage || 10
-    this.sortName = sortName || 'publish_time'
-    this.tagId = tagId || ''
-  }
-}
+export * from './tag.model'
+export * from './article.model'
+export * from './comment.model'
 
 export class Logins {
   loginBtns: string[]
@@ -25,55 +11,20 @@ export class Logins {
   }
 }
 
-export class TagList {
-  tags: any[]
-  constructor(tags?: any[]) {
-    this.tags = tags || []
-  }
-}
-
-
-
-export class ArticleList {
-  isFetching: boolean
-  isMore: boolean
-  items: any[]
-  constructor(isFetching?: boolean, isMore?: boolean, items?: any[]) {
-    this.isFetching = isFetching || false
-    this.isMore = isMore || true
-    this.items = items || []
-  }
-}
-
-export class ArticleDetail {
-  articleDetail: Object
-  constructor(articleDetail?: Object) {
-    this.articleDetail = articleDetail || {}
-  }
-}
-
-export class PrenextArticle {
-  next: Object
-  prev: Object
-  constructor(next?: Object, prev?: Object) {
-    this.prev = prev || {}
-    this.next = next || {}
-  }
-}
-
-export class CommentList {
-  isFetching: boolean
-  errMsg: string
-  items: any[]
-  constructor(isFetching?: boolean, errMsg?: string, items?: any[]) {
-    this.isFetching = isFetching || false
-    this.errMsg = errMsg || ''
-    this.items = items || []
-  }
-}
-export class MobileApps {
+export class MobileAppsModel {
   apps: any[]
   constructor(apps?: any[]) {
     this.apps = apps || []
   }
+}
+
+export class ToasterModel {
+	title: string
+	content: string
+	type: string
+	constructor(obj?: any) {
+		this.title = obj && obj.title || ''
+		this.content = obj && obj.content || ''
+		this.type = obj && obj.type || ''
+	}
 }

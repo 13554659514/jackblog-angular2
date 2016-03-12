@@ -6,37 +6,23 @@ import Settings from './components/Settings'
 import AppDownloads from './components/Appdownloads'
 import Article from './components/Article'
 import NotFound from './components/NotFound'
-//import {ToasterContainerComponent, ToasterService} from './components/toaster'
-//import { ShowToasterService } from './services'
+import Navbar from './components/Navbar'
+import {ToasterContainerComponent, ToasterService} from './components/toaster'
+import { ShowtoasterService } from './utils/showtoaster'
+import { ToasterModel } from './models'
 import 'font-awesome/css/font-awesome.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'jackblog-sass/dist/index.css'
-// import 'angular2-toaster/lib/toaster.css'
+import './assets/styles/index.css'
 
 @Component({
 	selector: 'app',
-  directives: [...ROUTER_DIRECTIVES],
+  directives: [...ROUTER_DIRECTIVES, ToasterContainerComponent, Navbar],
+  providers: [ToasterService],
   template: `
-  	<header>
-  	  <nav>
-  	  	<h1>My First Angular 2 Appss</h1>
-  	    <ul>
-  	      <li router-active>
-  	        <a [routerLink]=" ['Home'] ">Home</a>
-  	      </li>
-  	      <li router-active>
-  	        <a [routerLink]=" ['Login'] ">Login</a>
-  	      </li>
-  	      <li router-active>
-  	        <a [routerLink]=" ['Settings'] ">Settings</a>
-  	      </li>
-  	      <li>
-  	      	<a [routerLink]="['Article', {aid:12}]">Article</a>
-  	      </li>
-  	    </ul>
-  	  </nav>
-  	</header>
+    <navbar-box></navbar-box>
     <router-outlet></router-outlet>
+    <toaster-container></toaster-container>
   `
 })
 @RouteConfig([
@@ -48,18 +34,12 @@ import 'jackblog-sass/dist/index.css'
 		{ path: '/404', name: 'NotFound', component: NotFound, useAsDefault: true }
 ])
 export class App {
-  constructor() {}
-  hello(){
-    console.log('hello app')
+  constructor(private toasterService: ToasterService, showtoasterService: ShowtoasterService) {
+    showtoasterService.toasterSubject.subscribe((toaster: ToasterModel) => {
+      this.showtoaster(toaster.content,toaster.type)
+    })
   }
-  ngOninit() {
-    //this.toasterService.pop('error', 'title', '你好')
-    // this.showToasterService.showToasterSubject.subscribe((obj:any)=>{
-    //   console.log('来')
-    //   console.log(obj)
-    //   if(obj.type && obj.content){
-    //     this.toasterService.pop(obj.type, '', obj.content)
-    //   }
-    // })
+  showtoaster(content:string,type:string = 'error',title:string = ''){
+    this.toasterService.pop(type, title, content)
   }
 }

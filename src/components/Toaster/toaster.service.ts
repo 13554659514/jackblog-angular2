@@ -23,7 +23,6 @@ export class ToasterService {
 
     pop(type: string | Toast, title?: string, body?: string) {
         let toast = typeof type === 'string' ? { type: type, title: title, body: body } : type;
-        console.log('hello')
         this.addToast.emit(toast);
         // TODO: Return toast id
     }

@@ -1,7 +1,7 @@
 import { Injectable, bind } from 'angular2/core'
 import { Http, Response } from 'angular2/http'
 import { GlobalValModel } from '../models'
-import {Subject, BehaviorSubject, Observable} from 'rxjs'
+import {Subject, BehaviorSubject, Observable, ReplaySubject} from 'rxjs'
 import { API_ROOT } from '../config'
 
 @Injectable()
@@ -9,14 +9,13 @@ export class GlobalValService {
 	globalVal: GlobalValModel = new GlobalValModel()
 	captchaUrlSubject: Subject<string> = new BehaviorSubject<string>(this.globalVal.captchaUrl)
 	styleModeSubject: Subject<string> = new BehaviorSubject<string>(this.globalVal.styleMode)
-	//indexImgSubject: Subject<string> = new BehaviorSubject<string>(this.globalVal.indexImg)
-	indexImgSubject: Observable<string>
+	indexImgSubject: Subject<string> = new ReplaySubject<string>(1)
 	constructor(public http: Http){
-		this.indexImgSubject = this.getIndexImg()
+		this.getIndexImg()
 	}
 
-	changeStyleModel(styleModel:string){
-		this.styleModeSubject.next((styleModel === 'day-model') ? 'night-mode' : 'day-mode')
+	changeStyleModel(styleMode:string){
+		this.styleModeSubject.next((styleMode === 'day-mode') ? 'night-mode' : 'day-mode')
 	}
 	getCaptchaUrl(){
 		let captchaUrl = API_ROOT + 'users/getCaptcha?' + Math.random()
