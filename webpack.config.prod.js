@@ -20,10 +20,15 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false }
+      beautify: false,//prod
+      // disable mangling because of a bug in angular2 beta.1, beta.2 and beta.3
+      // TODO(mastertinner): enable mangling as soon as angular2 beta.4 is out
+      // mangle: { screw_ie8 : true },//prod
+      mangle: false,
+      compress : { screw_ie8 : true },//prod
+      comments: false//prod
     }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
-    new ExtractTextPlugin('[hash:8].style.css', { allChunks: true }),
     new HtmlWebpackPlugin({
       favicon:'./src/favicon.ico',
       title: "JackHu's blog",
@@ -36,6 +41,7 @@ module.exports = {
         collapseWhitespace:true    //删除空白符与换行符
       }
     }),
+    new ExtractTextPlugin('[hash:8].style.css', { allChunks: true })
   ],
   module: {
     preLoaders: [
@@ -58,6 +64,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.ts', '.async.ts', '.js', '.scss', '.css']
-  }
+  },
+  tslint: {
+    emitErrors: false,
+    failOnHint: false
+  },
+  node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
 }
-

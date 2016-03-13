@@ -4,12 +4,6 @@ export * from './tag.model'
 export * from './article.model'
 export * from './comment.model'
 
-export class Logins {
-  loginBtns: string[]
-  constructor(loginBtns?: string[]) {
-    this.loginBtns = loginBtns || []
-  }
-}
 
 export class MobileAppsModel {
   apps: any[]

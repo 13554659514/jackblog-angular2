@@ -10,14 +10,12 @@ import {
 	AbstractControl } from 'angular2/common'
 import { emailValidator } from '../../utils/validator'
 import { GlobalValService, AuthService } from '../../services'
-import {App} from '../../app'
+import SnsLoginComponent from './snsLogin'
 
 @Component({
 	selector: 'login',
-	//moduleId: module.id,
-	directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],
+	directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, SnsLoginComponent],
 	template: require('./index.html')
-	//templateUrl: 'index.html'
 })
 export default class Login {
 	signinForm: ControlGroup
@@ -25,13 +23,12 @@ export default class Login {
 	password: AbstractControl
 	captcha: AbstractControl
 	captchaUrl: string
-
+	logins: string[]
 	constructor(
 		fb: FormBuilder,
 		private _router: Router,
 		public globalValService:GlobalValService,
-		public authService: AuthService,
-    @Host() @Inject(forwardRef(() => App)) private app: App) {
+		public authService: AuthService) {
 		this.signinForm = fb.group({
 			'email': ['', Validators.compose([
 				Validators.minLength(3),
@@ -49,18 +46,18 @@ export default class Login {
 		this.email = this.signinForm.controls['email']
 		this.password = this.signinForm.controls['password']
 		this.captcha = this.signinForm.controls['captcha']
+		this.globalValService.captchaUrlSubject.subscribe((captchaUrl:string) => {
+			this.captchaUrl = captchaUrl
+		})
+		this.authService.snsLoginsSubject.subscribe((logins:string[])=>{
+			this.logins = logins
+		})
 	}
 	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
 		if(this.authService.getCookie('token')){
 			this._router.navigate(['Home'])
 		}
 		return true
-	}
-
-	ngOnInit(){
-		this.globalValService.captchaUrlSubject.subscribe((captchaUrl:string) => {
-			this.captchaUrl = captchaUrl
-		})
 	}
 
 	onSubmit(user: Object): void {

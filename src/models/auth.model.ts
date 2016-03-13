@@ -6,7 +6,7 @@ export class AuthModel {
   errMsg: string
   constructor(token?: string, user?: Object, errMsg?: string) {
     this.token = token || Cookie.getCookie('token') || ''
-    this.user = user || {}
+    this.user = user || null
     this.errMsg = errMsg || ''
   }
 }

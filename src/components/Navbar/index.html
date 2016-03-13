@@ -1,6 +1,6 @@
   <div class="navbar-box navbar-skin">
     <div class="navbar-menu">
-        <a [routerLink]=" ['Home'] " class="navbar-item logo" title="首页">
+        <a [routerLink]=" ['Home'] " class="navbar-item logo" [class.active]="location.path() !=='/appdownloads'" title="首页">
           Hu
         </a>
         <a [routerLink]=" ['AppDownloads'] " class="navbar-item mobile hidden-xs" title="移动应用">

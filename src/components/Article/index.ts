@@ -1,65 +1,94 @@
 import { Component, OnInit } from 'angular2/core'
 import { RouteParams, Router, CanActivate, ComponentInstruction } from 'angular2/router'
-import { Hero, HeroService } from '../../services/hero.service'
+import ArticleContentComponent from './content'
+import { ArticleDetailModel,PrenextArticleModel,ToasterModel, OptionsModel, CommentModel, ReplyModel} from '../../models'
+import { ArticleService, AuthService, TagService, CommentService } from '../../services'
+import LikeComponent from './like'
+import PrenextComponent from './prenext'
+import CommentComponent from './comment'
+import GotopComponent from '../Scrolltop'
+import { ShowtoasterService } from '../../utils/showtoaster'
 
 @Component({
 	selector: 'article',
+	directives: [ArticleContentComponent, LikeComponent, PrenextComponent, CommentComponent, GotopComponent],
 	template: `
-		<h1>文章详情页.</h1>
-		<h3 *ngIf="hero">"{{hero.name}}"</h3>
-		<button (click)="goToArticle(hero.id - 1)">上一篇.</button>
-		<button (click)="goToHome()">回到首页.</button>
-		<button (click)="goToArticle(hero.id + 1)">下一篇.</button>
+	<div class="article-box">
+	  <article-content [articleDetail]="articleDetail"></article-content>
+	 	<like [likeCount]="articleDetail.like_count" [isLike]="articleDetail.isLike" (toggleLikeEvent)="handleToggleLike($event)"></like>
+	  <prenext [prenextArticle]="prenextArticle"></prenext>
+	  <comment [commentList]="commentList" [user]="user" 
+	  	(submitCommentEvent)="handleSubmitComment($event)"
+	  	(submitReplyEvent)="handleSubmitReply($event.cid,$event.content)"
+	  	(openLoginEvent)="openLoginModal()"></comment>
+	  <gotop></gotop>
+	</div>
 	`
 })
-@CanActivate((next, prev) => {
-	//路由器生命周期（钩子）
-		console.log('路由器生命周期---CanActivate(将要进入路由.)')
-		console.log(next.urlPath)
-		console.log(prev)
-	return true
-})
-export default class Article {
-	public hero: Hero
+export default class ArticleComponent {
+	articleDetail: ArticleDetailModel
+	aid:string
+  user: Object
+  prenextArticle:PrenextArticleModel
+  options:OptionsModel
+  commentList: CommentModel[]
 	constructor(
-		private _router: Router,
 		private _routeParams: RouteParams,
-		private _service: HeroService
-	){}
-	//组件生命周期, 创建组件
-	ngOnInit(){
-		console.log('article组件初始化')
-		let id = this._routeParams.get('aid')
-		this._service.getHero(id).then(hero => this.hero = hero)
-	}
-	//组件生命周期, 销毁组件
-	ngOnDestroy(){
-		console.log('article组件销毁')
-	}
-	ngOnChanges(){
-		console.log('article组件发生改变')
-	}
-	goToHome(){
-		this._router.navigate(['Home'])
-	}
-	goToArticle(id: number){
-		this._router.navigate(['Article',{aid: id }])
-	}
-	routerCanReuse(next: ComponentInstruction, prev: ComponentInstruction) {
-		console.log('路由生命周期---CanReuse(路由可以被重新加载)')
-		return true;
-	}
-	routerOnReuse(next: ComponentInstruction, prev: ComponentInstruction) {
-		console.log('路由生命周期---OnReuse(路由已重新加载)')
+		private articleService: ArticleService,
+		private authService: AuthService,
+		private tagService: TagService,
+		private commentService: CommentService,
+		private showtoasterService: ShowtoasterService) {
+		this.aid = _routeParams.get('aid')
+		this.articleService.ArticleDetailSubject.subscribe((articleDetail:ArticleDetailModel)=>{
+			this.articleDetail = articleDetail
+		})
+		this.articleService.prenextSubject.subscribe((prenextArticle:PrenextArticleModel)=>{
+			this.prenextArticle = prenextArticle
+		})
+		this.tagService.optionSubject.subscribe((options: OptionsModel) => {
+			this.options = options
+		})
+		this.commentService.commentListSubject.subscribe((commentList:CommentModel[])=>{
+			this.commentList = commentList
+		})
 	}
 	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
-		console.log('路由生命周期---OnActivate(路由被激活)')
+		this.authService.userSubject.subscribe((user:Object)=>{
+		  this.user = user
+		  this.articleService.getArticleDetail(this.aid, this.user)
+		  this.articleService.getPrenext(this.aid,this.options)
+		  this.commentService.getCommentList(this.aid)
+		})
 	}
-	routerCanDeactivate(){
-		console.log('路由生命周期---CanDeactivate(将要离开路由)')
-		return confirm('Are you sure you want to leave?');
+	handleToggleLike(event){
+		if(this.user){
+			this.articleService.toggleLike(this.aid,this.articleDetail)
+		}else{
+			this.openLoginModal()
+		}
 	}
-	routerOnDeactivate(next: ComponentInstruction, prev: ComponentInstruction) {
-		console.log('路由生命周期---CanDeactivate(已经离开路由)')
+	openLoginModal(){
+		this.showtoasterService.showModal()
+	}
+	handleSubmitComment(content){
+		if (content.trim() === '') {
+			this.showtoasterService.showToaster(new ToasterModel({content: '评论内容不能为空', type: 'error' }))
+		}
+	  if(this.user){
+	  	this.commentService.addComment({aid:this.aid,content:content},this.commentList)
+	  }else{
+	    this.openLoginModal()
+	  }
+	}
+	handleSubmitReply(cid,content){
+		if (content.trim() === '') {
+			this.showtoasterService.showToaster(new ToasterModel({content: '评论内容不能为空', type: 'error' }))
+		}
+	  if(this.user){
+			this.commentService.addReply(cid, { content: content }, this.commentList)
+	  }else{
+	    this.openLoginModal()
+	  }
 	}
 }

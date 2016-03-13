@@ -35,7 +35,7 @@ export default class SettingsComponent {
 		})
 		this.nickname = this.settingsForm.controls['nickname']
 		this.authService.userSubject.subscribe((user:any)=>{
-			this.userNickname = user.nickname || ''
+			this.userNickname = user && user.nickname || ''
 		})
 	}
 

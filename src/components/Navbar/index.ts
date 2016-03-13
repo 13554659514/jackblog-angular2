@@ -15,7 +15,8 @@ export default class Navbar {
   token: string
   defaultAvatar = require('../../assets/images/avatar.png')
   constructor(public globalValService: GlobalValService,
-    public authService: AuthService) {}
+    public authService: AuthService,
+    public location: Location) {}
 
   ngOnInit() {
     this.globalValService.styleModeSubject.subscribe((styleMode: string) => {

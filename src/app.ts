@@ -7,6 +7,7 @@ import AppDownloads from './components/Appdownloads'
 import Article from './components/Article'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
+import ModalComponent from './components/Login/modal'
 import {ToasterContainerComponent, ToasterService} from './components/toaster'
 import { ShowtoasterService } from './utils/showtoaster'
 import { ToasterModel } from './models'
@@ -17,12 +18,13 @@ import './assets/styles/index.css'
 
 @Component({
 	selector: 'app',
-  directives: [...ROUTER_DIRECTIVES, ToasterContainerComponent, Navbar],
+  directives: [...ROUTER_DIRECTIVES, ToasterContainerComponent, Navbar, ModalComponent],
   providers: [ToasterService],
   template: `
     <navbar-box></navbar-box>
     <router-outlet></router-outlet>
     <toaster-container></toaster-container>
+    <modal></modal>
   `
 })
 @RouteConfig([

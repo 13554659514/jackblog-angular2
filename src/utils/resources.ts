@@ -66,13 +66,13 @@ export class ResourceService {
 		}
 		//comment
 		getFrontCommentList(id:string): Observable<any> {
-			return this.http.get(API_ROOT + 'article/' + id + '/getFrontCommentList', this.interceptor())
+			return this.http.get(API_ROOT + 'comment/' + id + '/getFrontCommentList', this.interceptor())
 		}
 		addNewComment(data: Object): Observable<any> {
-			return this.http.post(API_ROOT + 'article/addNewComment', JSON.stringify(data), this.interceptor())
+			return this.http.post(API_ROOT + 'comment/addNewComment', JSON.stringify(data), this.interceptor())
 		}
 		addNewReply(id:string,data:Object):Observable<any> {
-			return this.http.post(API_ROOT + 'article/'+ id +'/addNewReply',
+			return this.http.post(API_ROOT + 'comment/'+ id +'/addNewReply',
 				JSON.stringify(data), this.interceptor())
 		}
 }

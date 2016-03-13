@@ -15,7 +15,7 @@ export class AuthService {
 		errMsgSubject: Subject<string> = new ReplaySubject<string>(1)
 		tokenSubject: Subject<string> = new BehaviorSubject<Object>(this.authInitialState.token)
 		userSubject: Subject<Object> = new ReplaySubject<Object>(1)
-
+		snsLoginsSubject: Subject<string[]> = new ReplaySubject<string[]>(1)
 		constructor(
 			public http: Http,
 			public rs: ResourceService,
@@ -29,6 +29,7 @@ export class AuthService {
 			}else{
 				this.userSubject.next(this.authInitialState.user)
 			}
+			this.getSnsLogins()
 		}
 		saveCookie(name:string,value:string):void {
 			Cookie.setCookie(name, value, null, null, CookieDomain)
@@ -70,7 +71,7 @@ export class AuthService {
 			})
 		}
 		logout():void{
-			this.deleteCookie('token')
+			Cookie.deleteCookie('token')
 			this.tokenSubject.next('')
 			this.userSubject.next(this.authInitialState.user)
 			this._router.navigate(['Home'])
@@ -92,6 +93,15 @@ export class AuthService {
 				this.showtoasterService.showToaster(toasterInfo)
 			})
 		}
+		getSnsLogins(){
+			this.rs.getSnsLogins()
+				.subscribe((res:Response)=>{
+					this.snsLoginsSubject.next(res.json().data)
+				},(err)=>{
+					this.snsLoginsSubject.next([])
+				})
+		}
+
 }
 
 export var AuthServiceInjectables: Array<any> = [

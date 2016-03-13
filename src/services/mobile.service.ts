@@ -7,9 +7,7 @@ import { Response } from 'angular2/http'
 @Injectable()
 export class MobileService {
 	mobileInitialState: MobileAppsModel = new MobileAppsModel()
-
 	mobileAppsSubject: Subject<MobileAppsModel> = new ReplaySubject<MobileAppsModel>(1)
-
 	constructor(public rs: ResourceService) {
 		this.getMobileApps()
 	}
@@ -22,7 +20,6 @@ export class MobileService {
 				this.mobileAppsSubject.next(this.mobileInitialState)
 			})
 	}
-
 }
 
 export var MobileServiceInjectables: Array<any> = [

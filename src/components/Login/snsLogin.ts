@@ -1,5 +1,5 @@
 import { Component } from 'angular2/core'
-//import { Cookie } from 'ng2-cookies/ng2-cookies'
+import { Cookie } from '../../utils/cookies'
 import { API_ROOT } from '../../config'
 
 @Component({
@@ -8,21 +8,22 @@ import { API_ROOT } from '../../config'
 	template: `
 	<div class="login-sns">
 	  <ul>
-	  	<li v-for="item in logins" (click)="snsLogin(item)">
-	  		<a class="{{item}}" href="#"><i class="fa fa-{{item}}"></i></a>
+	  	<li *ngFor="#item of logins" (click)="snsLogin($event,item)">
+	  		<a class="{{item}}" href="javascript:;"><i class="fa fa-{{item}}"></i></a>
 	  	</li>
 	  </ul>
 	</div>
 	`
 })
-export class SnsLogin {
+export default class SnsLoginComponent {
 	logins: string[]
-	snsLogin(provider:string):void {
+	snsLogin(e,provider:string):void {
+		e.preventDefault()
 		let search = API_ROOT + 'auth/' + provider + '?redirectUrl=' + window.location.origin
-		// const token = Cookie.getCookie('token')
-		// if (token) {
-		//   search += '&access_token=' + token.replace(/(^\")|(\"$)/g, "")
-		// }
+		const token = Cookie.getCookie('token')
+		if (token) {
+		  search += '&access_token=' + token.replace(/(^\")|(\"$)/g, '')
+		}
 		window.location.href = search
 	}
 }
