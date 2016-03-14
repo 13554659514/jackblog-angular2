@@ -6,7 +6,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   devtool: 'eval-source-map',
   debug:true,
-  entry: { 'vendor': ['./src/vendor.ts'], 'main': ['./src/boot.ts'] },
+  entry: {
+    'vendor': [path.join(__dirname,'src/vendor.ts')],
+    'main': [path.join(__dirname,'src/boot.ts')]
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
@@ -20,8 +23,9 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
     new HtmlWebpackPlugin({ 
+      favicon:path.join(__dirname,'src/favicon.ico'),
       title: "JackHu's blog",
-      template: 'src/index.ejs',
+      template: path.join(__dirname,'src/index.ejs'),
       inject: true,
       baseUrl:'/'
     }),

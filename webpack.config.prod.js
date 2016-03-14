@@ -4,7 +4,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: { 'vendor': ['./src/vendor.ts'], 'main': ['./src/boot.ts'] },
+  entry: {
+    'vendor': [path.join(__dirname,'src/vendor.ts')],
+    'main': [path.join(__dirname,'src/boot.ts')]
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
@@ -30,7 +33,7 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
     new HtmlWebpackPlugin({
-      favicon:'./src/favicon.ico',
+      favicon:path.join(__dirname,'src/favicon.ico'),
       title: "JackHu's blog",
       baseUrl:'/',
       template: path.join(__dirname,'src/index.ejs'),  //模板文件
