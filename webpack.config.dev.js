@@ -24,8 +24,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
     new HtmlWebpackPlugin({ 
       favicon:path.join(__dirname,'src/favicon.ico'),
-      title: "JackHu's blog",
-      template: path.join(__dirname,'src/index.ejs'),
+      title: "JackHu's blog angular2.x版",
+      template: path.join(__dirname,'src/index.html'),
       inject: true,
       baseUrl:'/'
     }),
