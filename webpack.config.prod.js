@@ -5,7 +5,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    'vendor': [path.join(__dirname,'src/vendor.ts')],
+    'polyfills': path.join(__dirname,'src/polyfills.ts'),
+    'vendor': path.join(__dirname,'src/vendor.ts'),
     'main': [path.join(__dirname,'src/boot.ts')]
   },
   output: {
@@ -31,7 +32,7 @@ module.exports = {
       compress : { screw_ie8 : true },//prod
       comments: false//prod
     }),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
     new HtmlWebpackPlugin({
       favicon:path.join(__dirname,'src/favicon.ico'),
       title: "JackHu's blog angular2.x版",
@@ -51,7 +52,7 @@ module.exports = {
       { test: /\.js$/, loader: "source-map-loader", exclude: [ /node_modules\/rxjs/ ] }
     ],
     loaders: [
-      { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
+      { test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap' ) },
       {
         test: /\.(jpe?g|png|gif)$/i,
@@ -65,7 +66,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.ts', '.async.ts', '.js', '.scss', '.css']
+    extensions: ['', '.ts', '.js', '.scss', '.css']
   },
   tslint: {
     emitErrors: false,
