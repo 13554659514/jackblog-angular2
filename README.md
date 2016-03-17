@@ -1,4 +1,7 @@
 # jackblog-angular2
+[![Dependency Status](https://david-dm.org/jackhutu/jackblog-angular2.svg)](https://david-dm.org/jackhutu/jackblog-angular2) 
+[![devDependency Status](https://david-dm.org/jackhutu/jackblog-angular2/dev-status.svg)](https://david-dm.org/jackhutu/jackblog-angular2#info=devDependencies)  
+
 
 Jackblog 是使用 Node.js + MongoDB + 其它客户端框架开发的个人博客系统,前后端分离,仿简书模板.此为客户端 Angular2.0版    
 服务端有:  

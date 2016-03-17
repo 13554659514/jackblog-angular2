@@ -1,11 +1,9 @@
 import { Component, EventEmitter } from 'angular2/core'
 import { ArticleList } from '../../models'
-import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router'
 import { CustomTimePipe } from '../../utils/pipes'
 
 @Component({
 	selector: 'articles',
-	directives: [...ROUTER_DIRECTIVES],
 	pipes: [CustomTimePipe],
 	inputs: ['articleList'],
 	template: `

@@ -12,7 +12,6 @@ import { GlobalValService } from './globalval.service'
 @Injectable()
 export class AuthService {
 		authInitialState: AuthModel = new AuthModel()
-		errMsgSubject: Subject<string> = new ReplaySubject<string>(1)
 		tokenSubject: Subject<string> = new BehaviorSubject<Object>(this.authInitialState.token)
 		userSubject: Subject<Object> = new ReplaySubject<Object>(1)
 		snsLoginsSubject: Subject<string[]> = new ReplaySubject<string[]>(1)

@@ -2,12 +2,14 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 module.exports = {
   devtool: 'eval-source-map',
   debug:true,
   entry: {
-    'vendor': [path.join(__dirname,'src/vendor.ts')],
+    'polyfills': path.join(__dirname,'src/polyfills.ts'),
+    'vendor': path.join(__dirname,'src/vendor.ts'),
     'main': [path.join(__dirname,'src/boot.ts')]
   },
   output: {
@@ -18,16 +20,16 @@ module.exports = {
     chunkFilename: '[id].chunk.js'
   },
   plugins: [
+    new ForkCheckerPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
     new HtmlWebpackPlugin({ 
       favicon:path.join(__dirname,'src/favicon.ico'),
-      title: "JackHu's blog angular2.x版",
-      template: path.join(__dirname,'src/index.html'),
+      title: "Jackblog angular2.x版",
+      template: path.join(__dirname,'src/index.ejs'),
       inject: true,
-      baseUrl:'/'
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -43,7 +45,8 @@ module.exports = {
       { test: /\.js$/, loader: "source-map-loader", exclude: [ /node_modules\/rxjs/ ] }
     ],
     loaders: [
-      { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
+      { test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
+      //{ test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap' ) },
       {
         test: /\.(jpe?g|png|gif)$/i,
@@ -58,7 +61,7 @@ module.exports = {
     noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /angular2-polyfills\.js/]
   },
   resolve: {
-    extensions: ['', '.ts', '.async.ts', '.js', '.scss', '.css']
+    extensions: ['', '.ts', '.js', '.scss', '.css']
   },
   tslint: {
     emitErrors: false,
@@ -66,4 +69,3 @@ module.exports = {
   },
   node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
 }
-

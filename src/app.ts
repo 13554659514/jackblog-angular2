@@ -1,5 +1,5 @@
-import { Component } from 'angular2/core'
-import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router'
+import {Component} from 'angular2/core'
+import {RouteConfig, Router} from 'angular2/router'
 import Home from './components/Home'
 import Login from './components/Login'
 import Settings from './components/Settings'
@@ -18,7 +18,7 @@ import './assets/styles/index.css'
 
 @Component({
 	selector: 'app',
-  directives: [...ROUTER_DIRECTIVES, ToasterContainerComponent, Navbar, ModalComponent],
+  directives: [ ToasterContainerComponent, Navbar, ModalComponent],
   providers: [ToasterService],
   template: `
     <navbar-box></navbar-box>

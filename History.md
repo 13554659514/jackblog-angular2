@@ -1,3 +1,12 @@
+1.1.0 / 2016-03-17
+==================
+
+* 更新angular2 到 2.0.0-beta.9
+* 更新ng2-bootstrap 到 1.0.7
+* 使用core-js 作为浏览器环境
+* 使用awesome-typescript-loader 替换 ts-loader
+
+
 1.0.0 / 2016-03-13
 ==================
 

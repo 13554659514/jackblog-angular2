@@ -1,42 +1,62 @@
 /*
  * Providers provided by Angular
  */
-import * as ngCore from 'angular2/core';
-import * as browser from 'angular2/platform/browser';
-import { ROUTER_PROVIDERS, APP_BASE_HREF } from 'angular2/router'
-import { HTTP_PROVIDERS, BrowserXhr, Connection } from 'angular2/http';
-import { HeroService } from './services/hero.service'
+import * as ngCore from 'angular2/core'
+import * as browser from 'angular2/platform/browser'
+import {
+  ROUTER_PROVIDERS,
+  ROUTER_DIRECTIVES,
+  LocationStrategy,
+  HashLocationStrategy,
+  APP_BASE_HREF
+} from 'angular2/router';
+import {FORM_PROVIDERS} from 'angular2/common'
+import {HTTP_PROVIDERS, BrowserXhr} from 'angular2/http'
 import { servicesInjectables } from './services'
 import { ResourceService } from './utils/resources'
 import { CustomBrowserXhr } from './utils/custom.browserxhr'
 import { ShowtoasterService } from './utils/showtoaster'
 
-const ENV_PROVIDERS = [];
+const APPLICATION_PROVIDERS = [
+  ...HTTP_PROVIDERS,
+  ...ROUTER_PROVIDERS,
+  ...FORM_PROVIDERS,
+  ngCore.provide( APP_BASE_HREF, { useValue: '/' } ),
+  ngCore.provide( BrowserXhr, { useClass: CustomBrowserXhr })
+];
+// application_directives: directives that are global through out the application
+const APPLICATION_DIRECTIVES = [
+  ...ROUTER_DIRECTIVES
+];
 
+// application_pipes: pipes that are global through out the application
+const APPLICATION_PIPES = [
+
+];
+
+// Environment
 if ('production' === process.env.NODE_ENV) {
+  // Production
   ngCore.enableProdMode();
-  ENV_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE);
+  APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE);
 } else {
-  ENV_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS);
+  // Development
+  APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS);
 }
 
-import {App} from './app';
+import {App} from './app'
 
 export function main() {
   return browser.bootstrap(App, [
-    ...ENV_PROVIDERS,
-    ...HTTP_PROVIDERS,
-    ...ROUTER_PROVIDERS,
-    HeroService,
+    ...APPLICATION_PROVIDERS,
     ResourceService,
     ShowtoasterService,
     servicesInjectables,
-    ngCore.provide( APP_BASE_HREF, { useValue: '/' } ),
-    ngCore.provide( BrowserXhr, { useClass: CustomBrowserXhr })
+    ngCore.provide(ngCore.PLATFORM_DIRECTIVES, {useValue: APPLICATION_DIRECTIVES, multi: true}),
+    ngCore.provide(ngCore.PLATFORM_PIPES, {useValue: APPLICATION_PIPES, multi: true})
   ])
   .catch(err => console.error(err));
 }
-
 
 /*
  * Hot Module Reload

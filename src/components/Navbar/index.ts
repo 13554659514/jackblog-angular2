@@ -1,12 +1,11 @@
 import { Component } from 'angular2/core'
-import { CORE_DIRECTIVES } from 'angular2/common'
 import { GlobalValService, AuthService } from '../../services'
-import { Router, ROUTER_DIRECTIVES, Location } from 'angular2/router'
+import { Location } from 'angular2/router'
 import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap'
 
 @Component({
   selector: 'navbar-box',
-  directives: [...ROUTER_DIRECTIVES, ...CORE_DIRECTIVES, DROPDOWN_DIRECTIVES],
+  directives: [DROPDOWN_DIRECTIVES],
   template: require('./index.html')
 })
 export default class Navbar {
