@@ -2,24 +2,25 @@ import { Injectable, bind } from 'angular2/core'
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from 'angular2/http'
 import {Subject, BehaviorSubject, Observable} from 'rxjs'
 import { API_ROOT, CookieDomain } from '../config'
-import { Cookie } from './cookies'
+import { Cookie } from 'angular2-cookies'
 import * as querystring from 'querystring'
 
 @Injectable()
 export class ResourceService {
 		headers:Headers = new Headers()
-		opts:RequestOptions = new RequestOptions()
+
 		constructor(public http: Http) {
 			this.headers.append('Content-Type', 'application/json')
-			this.opts.headers = this.headers
 		}
 
 		interceptor():RequestOptions{
-			if (Cookie.getCookie('token') && !this.opts.headers.get('Authorization')) {
-				this.opts.headers.append('Authorization',
-					'Bearer ' + Cookie.getCookie('token').replace(/(^\")|(\"$)/g, ''))
+			const opts:RequestOptions = new RequestOptions()
+			opts.headers = this.headers
+			if (Cookie.load('token') && !opts.headers.get('Authorization')) {
+				opts.headers.append('Authorization',
+					'Bearer ' + Cookie.load('token').replace(/(^\")|(\"$)/g, ''))
 			}
-			return this.opts
+			return opts
 		}
 		//登录请求.
 		localLogin(data: Object): Observable<any> {

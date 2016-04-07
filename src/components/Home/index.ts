@@ -35,6 +35,7 @@ export default class Home {
 	articleList: any[]
 	isFetching: boolean
 	isMore: boolean
+
 	constructor(public tagService: TagService, globalValService: GlobalValService) {
 		tagService.tagListSubject.subscribe((tagList:TagListModel)=>{
 			this.tagList = tagList

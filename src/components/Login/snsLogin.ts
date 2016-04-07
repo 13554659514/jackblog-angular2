@@ -1,5 +1,5 @@
 import { Component } from 'angular2/core'
-import { Cookie } from '../../utils/cookies'
+import { Cookie } from 'angular2-cookies'
 import { API_ROOT } from '../../config'
 
 @Component({
@@ -20,7 +20,7 @@ export default class SnsLoginComponent {
 	snsLogin(e,provider:string):void {
 		e.preventDefault()
 		let search = API_ROOT + 'auth/' + provider + '?redirectUrl=' + window.location.origin
-		const token = Cookie.getCookie('token')
+		const token = Cookie.load('token')
 		if (token) {
 		  search += '&access_token=' + token.replace(/(^\")|(\"$)/g, '')
 		}

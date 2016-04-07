@@ -9,7 +9,8 @@ export class GlobalValService {
 	globalVal: GlobalValModel = new GlobalValModel()
 	captchaUrlSubject: Subject<string> = new BehaviorSubject<string>(this.globalVal.captchaUrl)
 	styleModeSubject: Subject<string> = new BehaviorSubject<string>(this.globalVal.styleMode)
-	indexImgSubject: Subject<string> = new ReplaySubject<string>(1)
+	indexImgSubject: Subject<any> = new ReplaySubject<any>(1)
+
 	constructor(public http: Http){
 		this.getIndexImg()
 	}
@@ -21,10 +22,15 @@ export class GlobalValService {
 		let captchaUrl = API_ROOT + 'users/getCaptcha?' + Math.random()
 		this.captchaUrlSubject.next(captchaUrl)
 	}
-	getIndexImg(): Observable<string> {
+	getIndexImg() {
 		return this.http.get(API_ROOT + 'article/getIndexImage')
 			.map((res:Response)=>{
 				return res.json().img
+			})
+			.subscribe((img: string) => {
+				this.indexImgSubject.next(img)
+			}, (err: Response) => {
+				this.indexImgSubject.next(this.globalVal.indexImg)
 			})
 	}
 }

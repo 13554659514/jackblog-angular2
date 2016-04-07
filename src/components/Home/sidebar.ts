@@ -17,13 +17,12 @@ import { GlobalValService } from '../../services'
 })
 export default class SidebarComponent {
 	indexImg:string
-	defaultIndexImg = require('../../assets/images/shanghai.jpg')
 	constructor(globalValService: GlobalValService) {
 
 	}
 	setStyles(){
 		return {
-			backgroundImage: 'url(' + (this.indexImg || this.defaultIndexImg) + ')'
+			backgroundImage: 'url(' + (this.indexImg) + ')'
 		}
 	}
 }

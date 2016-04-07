@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from 'angular2/http'
 import { AuthModel, ToasterModel } from '../models'
 import {Subject, BehaviorSubject, ReplaySubject, Observable} from 'rxjs'
 import { API_ROOT, CookieDomain } from '../config'
-import { Cookie } from '../utils/cookies'
+import { Cookie } from 'angular2-cookies'
 import { ResourceService } from '../utils/resources'
 import { Router } from 'angular2/router'
 import { ShowtoasterService } from '../utils/showtoaster'
@@ -31,13 +31,13 @@ export class AuthService {
 			this.getSnsLogins()
 		}
 		saveCookie(name:string,value:string):void {
-			Cookie.setCookie(name, value, null, null, CookieDomain)
+			Cookie.save(name, value, null, null, CookieDomain)
 		}
 		getCookie(name:string) {
-			return Cookie.getCookie(name)
+			return Cookie.load(name)
 		}
 		deleteCookie(name:string):void {
-			Cookie.deleteCookie(name)
+			Cookie.remove(name)
 		}
 		//登录请求.
 		localLogin(data: Object):void {
@@ -70,7 +70,7 @@ export class AuthService {
 			})
 		}
 		logout():void{
-			Cookie.deleteCookie('token')
+			this.deleteCookie('token')
 			this.tokenSubject.next('')
 			this.userSubject.next(this.authInitialState.user)
 			this._router.navigate(['Home'])
