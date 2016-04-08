@@ -1,6 +1,6 @@
 {
   "name": "jackblog-angular2",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Jackblog angular 2.x 版",
   "scripts": {
     "start": "gulp serve",
@@ -54,7 +54,7 @@
     "ie-shim": "^0.1.0",
     "image-webpack-loader": "^1.6.3",
     "imports-loader": "^0.6.5",
-    "jackblog-sass": "^1.0.3",
+    "jackblog-sass": "^1.0.4",
     "ng2-bootstrap": "^1.0.10",
     "open": "0.0.5",
     "querystring": "^0.2.0",
