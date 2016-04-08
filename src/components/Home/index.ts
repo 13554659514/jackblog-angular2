@@ -31,22 +31,22 @@ import FooterComponent from './footer'
 export default class Home {
 	tagList: TagListModel
 	options: OptionsModel
-	indexImg: string
+	indexImg: any
 	articleList: any[]
 	isFetching: boolean
 	isMore: boolean
+	defaultIndexImg: any = require('../../assets/images/shanghai.jpg')
 
 	constructor(public tagService: TagService, globalValService: GlobalValService) {
+		globalValService.indexImgSubject.subscribe((indexImg:string)=>{
+			this.indexImg = indexImg || this.defaultIndexImg
+		})
 		tagService.tagListSubject.subscribe((tagList:TagListModel)=>{
 			this.tagList = tagList
 		})
 		tagService.optionSubject.subscribe((options:OptionsModel)=>{
 			this.options = options
 		})
-		globalValService.indexImgSubject.subscribe((indexImg:string)=>{
-			this.indexImg = indexImg
-		})
-
 		tagService.isFetchingSubject.subscribe((isFetching:boolean)=>{
 			this.isFetching = isFetching
 		})

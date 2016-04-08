@@ -1,5 +1,4 @@
 import { Component } from 'angular2/core'
-import { GlobalValService } from '../../services'
 
 @Component({
 	selector: 'sidebar',
@@ -17,10 +16,9 @@ import { GlobalValService } from '../../services'
 })
 export default class SidebarComponent {
 	indexImg:string
-	constructor(globalValService: GlobalValService) {
-
-	}
+	constructor() {}
 	setStyles(){
+
 		return {
 			backgroundImage: 'url(' + (this.indexImg) + ')'
 		}

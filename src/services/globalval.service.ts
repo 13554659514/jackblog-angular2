@@ -9,7 +9,7 @@ export class GlobalValService {
 	globalVal: GlobalValModel = new GlobalValModel()
 	captchaUrlSubject: Subject<string> = new BehaviorSubject<string>(this.globalVal.captchaUrl)
 	styleModeSubject: Subject<string> = new BehaviorSubject<string>(this.globalVal.styleMode)
-	indexImgSubject: Subject<any> = new ReplaySubject<any>(1)
+	indexImgSubject: Subject<string> = new ReplaySubject<string>(1)
 
 	constructor(public http: Http){
 		this.getIndexImg()
