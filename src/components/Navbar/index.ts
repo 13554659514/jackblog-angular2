@@ -1,7 +1,8 @@
-import { Component } from 'angular2/core'
-import { GlobalValService, AuthService } from '../../services'
-import { Location } from 'angular2/router'
-import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap'
+import {Component} from 'angular2/core'
+import {Location} from 'angular2/router'
+import {CORE_DIRECTIVES} from 'angular2/common'
+import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap'
+import {GlobalValService, AuthService} from '../../services'
 
 @Component({
   selector: 'navbar-box',

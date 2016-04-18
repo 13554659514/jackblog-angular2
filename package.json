@@ -1,6 +1,6 @@
 {
   "name": "jackblog-angular2",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Jackblog angular 2.x 版",
   "scripts": {
     "start": "gulp serve",
@@ -25,11 +25,11 @@
   "homepage": "https://github.com/jackhutu/jackblog-angular2#readme",
   "dependencies": {
     "express": "^4.13.4",
-    "pm2": "^1.1.1",
+    "pm2": "^1.1.2",
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
-    "angular2": "^2.0.0-beta.13",
+    "angular2": "2.0.0-beta.15",
     "angular2-cookies": "0.0.2",
     "awesome-typescript-loader": "^0.16.2",
     "bootstrap": "^3.3.6",
@@ -42,31 +42,30 @@
     "es7-reflect-metadata": "1.6.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
-    "font-awesome": "^4.5.0",
+    "font-awesome": "^4.6.1",
     "gulp": "^3.9.1",
     "gulp-env": "^0.4.0",
     "gulp-nodemon": "^2.0.6",
     "gulp-sequence": "^0.4.5",
     "gulp-util": "^3.0.7",
     "html-webpack-plugin": "^2.15.0",
-    "ie-shim": "^0.1.0",
-    "image-webpack-loader": "^1.6.3",
+    "image-webpack-loader": "^1.7.0",
     "jackblog-sass": "^1.0.4",
-    "ng2-bootstrap": "^1.0.10",
+    "ng2-bootstrap": "1.0.13",
     "open": "0.0.5",
     "raw-loader": "^0.5.1",
     "rxjs": "5.0.0-beta.2",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
-    "ts-node": "^0.7.1",
-    "tslint": "^3.7.1",
+    "ts-node": "^0.7.2",
+    "tslint": "^3.7.4",
     "tslint-loader": "^2.1.0",
     "typedoc": "^0.3.12",
-    "typescript": "^1.8.7",
+    "typescript": "^1.8.10",
     "typings": "^0.7.12",
     "url-loader": "^0.5.7",
-    "webpack": "^1.12.15",
+    "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
-    "zone.js": "0.6.10"
+    "zone.js": "0.6.11"
   }
 }
