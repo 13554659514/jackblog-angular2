@@ -1,12 +1,12 @@
 {
   "name": "jackblog-angular2",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Jackblog angular 2.x 版",
   "scripts": {
     "start": "gulp serve",
     "build": "gulp build",
-    "pm2-start": "pm2 start process.json",
-    "pm2-restart": "pm2 restart process.json",
+    "start:dist": "gulp serve:dist",
+    "pm2-start": "pm2 start --no-daemon process.json",
     "postinstall": "typings install"
   },
   "repository": {
@@ -25,7 +25,6 @@
   "homepage": "https://github.com/jackhutu/jackblog-angular2#readme",
   "dependencies": {
     "express": "^4.13.4",
-    "pm2": "^1.1.2",
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {

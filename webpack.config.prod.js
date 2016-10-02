@@ -35,7 +35,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
     new HtmlWebpackPlugin({
       favicon:path.join(__dirname,'src/favicon.ico'),
-      title: "JackHu's blog angular2.x版",
+      title: "Jackblog angular2.x版",
       template: path.join(__dirname,'src/index.ejs'),  //模板文件
       inject:'body',
       hash:false,    //为静态资源生成hash值
