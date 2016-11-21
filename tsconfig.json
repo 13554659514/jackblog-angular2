@@ -2,27 +2,34 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "strictNullChecks": false,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "baseUrl": "./src",
+    "paths": {
+    },
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "types": [
+      "hammerjs",
+      "node",
+      "webpack"
+    ]
   },
   "exclude": [
     "node_modules",
-    "typings/main.d.ts",
-    "typings/main"
-  ],
-  "filesGlob": [
-    "./src/**/*.ts",
-    "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "src/custom_typings.d.ts",
-    "typings/browser.d.ts"
+    "dist",
+    "src-bak"
   ],
   "awesomeTypescriptLoaderOptions": {
-    "useCache": true,
-    "resolveGlobs": true,
-    "forkChecker": true,
-    "cacheDirectory": "node_modules/.awesome-typescript-loader-cache"
+    "forkChecker": true
   },
   "compileOnSave": false,
   "buildOnSave": false,
