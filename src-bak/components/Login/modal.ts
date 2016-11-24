@@ -1,11 +1,10 @@
-import { Component } from 'angular2/core'
+import { Component } from '@angular/core'
 import SnsLoginComponent from './snsLogin'
 import { AuthService } from '../../services'
 import { ShowtoasterService } from '../../utils/showtoaster'
 
 @Component({
 	selector:'modal',
-	directives: [SnsLoginComponent],
 	template:`
 	<div class="modal-backdrop fade in"
 	     [style.display]="showModal ? 'block' : 'none'"></div>

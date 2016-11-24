@@ -1,4 +1,4 @@
-import {Pipe} from '@angular2/core'
+import { Pipe } from '@angular/core'
 
 @Pipe({ name: 'customTime' })
 export class CustomTimePipe {
@@ -31,18 +31,5 @@ export class CustomTimePipe {
 		  descTime = '刚刚'
 		}
 		return descTime
-	}
-}
-
-@Pipe({ name: 'formatDate' })
-export class FormatDatePipe {
-	transform(time: string): string {
-		let tmpDate = new Date(time)
-		let year = tmpDate.getFullYear()
-		let mathon = tmpDate.getMonth() + 1
-		let day = tmpDate.getDate()
-		let hours = tmpDate.getHours()
-		let minutes = tmpDate.getMinutes()
-		return year + '.' + mathon + '.' + day + ' ' + hours + ':' + minutes
 	}
 }

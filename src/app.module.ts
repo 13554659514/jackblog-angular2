@@ -1,31 +1,23 @@
-// import { NgModule }      from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-// import { AppComponent }   from './app.component';
-
-// @NgModule({
-//   imports:      [ BrowserModule ],
-//   declarations: [ AppComponent ],
-//   bootstrap:    [ AppComponent ]
-// })
-// export class AppModule { }
-
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, PreloadAllModules } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-
+import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 /*
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './env';
 import { ROUTES } from './app.routes';
-// App is our top level component
-import { AppComponent } from './app.component';
+
 // import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
+
+// App is our top level component
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/Home';
+import { CustomTimePipe,FormatDatePipe } from './pipes'
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -46,13 +38,16 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CustomTimePipe,
+    FormatDatePipe
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    DropdownModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

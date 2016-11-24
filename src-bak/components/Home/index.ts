@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core'
+import {Component} from '@angular/core'
 import { TagService,GlobalValService } from '../../services'
 import { TagListModel, OptionsModel, ArticleList } from '../../models'
 import SidebarComponent from './sidebar'
@@ -9,7 +9,6 @@ import FooterComponent from './footer'
 
 @Component({
 	selector: 'home',
-	directives: [SidebarComponent, TagsComponent, ArticleListComponent, LoadMoreComponent, FooterComponent],
 	template: `
 	<div class="container-fluid main-box">
 	  <div class="row">
@@ -58,7 +57,7 @@ export default class Home {
 		})
 	}
 
-	handleChange(event) {
+	handleChange(event:any) {
 		let options = event.options
 		let isAdd = event.isAdd || false
 		this.tagService.changeOptions(options)

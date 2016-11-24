@@ -1,4 +1,4 @@
-import { Component } from 'angular2/core'
+import { Component } from '@angular/core'
 import { Cookie } from 'angular2-cookies'
 import { API_ROOT } from '../../config'
 
@@ -17,7 +17,7 @@ import { API_ROOT } from '../../config'
 })
 export default class SnsLoginComponent {
 	logins: string[]
-	snsLogin(e,provider:string):void {
+	snsLogin(e:any,provider:string):void {
 		e.preventDefault()
 		let search = API_ROOT + 'auth/' + provider + '?redirectUrl=' + window.location.origin
 		const token = Cookie.load('token')

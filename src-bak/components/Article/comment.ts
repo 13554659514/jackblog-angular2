@@ -1,15 +1,10 @@
-import { Component, EventEmitter } from 'angular2/core'
+import { Component, EventEmitter } from '@angular/core'
 import {ArticleDetailModel} from '../../models'
-import { FormatDatePipe } from '../../utils/pipes'
-import { FORM_DIRECTIVES } from 'angular2/common'
-import ReplyComponent from './reply'
 
 @Component({
 	selector: 'comment',
 	inputs: ['user', 'commentList'],
-	directives: [FORM_DIRECTIVES, ReplyComponent],
 	outputs: ['submitCommentEvent', 'submitReplyEvent', 'openLoginEvent'],
-	pipes: [FormatDatePipe],
 	template: require('./comment.html')
 })
 export default class CommentComponent {
@@ -27,7 +22,7 @@ export default class CommentComponent {
 		this.submitCommentEvent.next(this.submitCommentContent)
 		this.submitCommentContent = ''
 	}
-	submitReply(i,value,cid){
+	submitReply(i:any,value:any,cid:any){
 	  const eleForm = document.getElementById('replyForm' + i)
 	  const eleTextarea = eleForm.getElementsByTagName('textarea')[0]
 	  this.submitReplyEvent.next({cid:cid,content:eleTextarea.value})
@@ -35,7 +30,7 @@ export default class CommentComponent {
 	  eleForm.className += ' hide'
 	}
 
-	showReply(i,nickname){
+	showReply(i:any,nickname:any){
 		//判断是否登录.未登录则弹出登录框.
 		if(this.user){
 		  const eleForm = document.getElementById('replyForm' + i)

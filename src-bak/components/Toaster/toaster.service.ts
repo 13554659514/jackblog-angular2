@@ -1,4 +1,4 @@
-import {Injectable, Output, EventEmitter, Optional} from 'angular2/core'
+import {Injectable, Output, EventEmitter, Optional} from '@angular/core'
 import {Toast} from './toast'
 
 @Injectable()

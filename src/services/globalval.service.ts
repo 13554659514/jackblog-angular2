@@ -1,7 +1,7 @@
-import { Injectable, bind } from 'angular2/core'
-import { Http, Response } from 'angular2/http'
+import { Injectable } from '@angular/core'
+import { Http, Response } from '@angular/http'
 import { GlobalValModel } from '../models'
-import {Subject, BehaviorSubject, Observable, ReplaySubject} from 'rxjs'
+import { Subject, BehaviorSubject, Observable, ReplaySubject } from 'rxjs'
 import { API_ROOT } from '../config'
 
 @Injectable()
@@ -34,7 +34,3 @@ export class GlobalValService {
 			})
 	}
 }
-
-export var GlobalValServiceInjectables: Array<any> = [
-  bind(GlobalValService).toClass(GlobalValService)
-]

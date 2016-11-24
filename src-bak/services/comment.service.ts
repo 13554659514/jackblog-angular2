@@ -1,8 +1,8 @@
-import { Injectable, bind } from 'angular2/core'
+import { Injectable } from '@angular/core'
 import { CommentModel,ReplyModel,ToasterModel } from '../models'
 import { Subject, BehaviorSubject, Observable, ReplaySubject } from 'rxjs'
 import { ResourceService } from '../utils/resources'
-import { Response } from 'angular2/http'
+import { Response } from '@angular/http'
 import { ShowtoasterService } from '../utils/showtoaster'
 
 @Injectable()
@@ -69,6 +69,6 @@ export class CommentService {
 	}
 }
 
-export var CommentServiceInjectables: Array<any> = [
-  bind(CommentService).toClass(CommentService)
-]
+// export var CommentServiceInjectables: Array<any> = [
+//   bind(CommentService).toClass(CommentService)
+// ]

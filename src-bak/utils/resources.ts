@@ -1,5 +1,5 @@
-import { Injectable, bind } from 'angular2/core'
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from 'angular2/http'
+import { Injectable } from '@angular/core'
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http'
 import {Subject, BehaviorSubject, Observable} from 'rxjs'
 import { API_ROOT, CookieDomain } from '../config'
 import { Cookie } from 'angular2-cookies'

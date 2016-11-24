@@ -1,23 +1,19 @@
-import { Component, Host, Inject, forwardRef, OnChanges, SimpleChange } from 'angular2/core'
-import { Router, CanActivate, ComponentInstruction } from 'angular2/router'
+import { Component, Host, Inject, forwardRef, OnChanges, SimpleChange } from '@angular/core'
+import { Router, CanActivate } from '@angular/router'
 import {
-  CORE_DIRECTIVES,
-	FORM_DIRECTIVES,
 	FormBuilder,
-	ControlGroup,
-	Control,
+	FormGroup,
 	Validators,
-	AbstractControl } from 'angular2/common'
+	AbstractControl } from '@angular/forms'
 import { nicknameValidator } from '../../utils/validator'
 import { AuthService } from '../../services'
 
 @Component({
 	selector: 'settings',
-	directives: [FORM_DIRECTIVES],
 	template: require('./index.html')
 })
 export default class SettingsComponent {
-	settingsForm: ControlGroup
+	settingsForm: FormGroup
 	nickname: AbstractControl
 	userNickname:string = ''
 
@@ -39,7 +35,7 @@ export default class SettingsComponent {
 		})
 	}
 
-	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
+	CanActivate() {
 		if(!this.authService.getCookie('token')){
 			this._router.navigate(['Login'])
 		}

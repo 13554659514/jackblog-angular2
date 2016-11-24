@@ -1,8 +1,8 @@
-import { Injectable, bind } from 'angular2/core'
+import { Injectable } from '@angular/core'
 import { MobileAppsModel } from '../models'
 import {Subject, BehaviorSubject, Observable, ReplaySubject} from 'rxjs'
 import { ResourceService } from '../utils/resources'
-import { Response } from 'angular2/http'
+import { Response } from '@angular/http'
 
 @Injectable()
 export class MobileService {
@@ -22,6 +22,6 @@ export class MobileService {
 	}
 }
 
-export var MobileServiceInjectables: Array<any> = [
-  bind(MobileService).toClass(MobileService)
-]
+// export var MobileServiceInjectables: Array<any> = [
+//   bind(MobileService).toClass(MobileService)
+// ]

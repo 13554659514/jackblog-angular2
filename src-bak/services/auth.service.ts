@@ -1,18 +1,18 @@
-import { Injectable, bind } from 'angular2/core'
-import { Http, Response, Headers, RequestOptions } from 'angular2/http'
+import { Injectable } from '@angular/core'
+import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { AuthModel, ToasterModel } from '../models'
 import {Subject, BehaviorSubject, ReplaySubject, Observable} from 'rxjs'
 import { API_ROOT, CookieDomain } from '../config'
 import { Cookie } from 'angular2-cookies'
 import { ResourceService } from '../utils/resources'
-import { Router } from 'angular2/router'
+import { Router } from '@angular/router'
 import { ShowtoasterService } from '../utils/showtoaster'
 import { GlobalValService } from './globalval.service'
 
 @Injectable()
 export class AuthService {
 		authInitialState: AuthModel = new AuthModel()
-		tokenSubject: Subject<string> = new BehaviorSubject<Object>(this.authInitialState.token)
+		tokenSubject: Subject<any> = new BehaviorSubject<Object>(this.authInitialState.token)
 		userSubject: Subject<Object> = new ReplaySubject<Object>(1)
 		snsLoginsSubject: Subject<string[]> = new ReplaySubject<string[]>(1)
 		constructor(
@@ -103,6 +103,6 @@ export class AuthService {
 
 }
 
-export var AuthServiceInjectables: Array<any> = [
-		bind(AuthService).toClass(AuthService)
-]
+// export var AuthServiceInjectables: Array<any> = [
+// 		bind(AuthService).toClass(AuthService)
+// ]

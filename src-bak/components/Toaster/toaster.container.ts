@@ -1,4 +1,4 @@
-import {Component, Input, DynamicComponentLoader, ChangeDetectorRef} from 'angular2/core'
+import {Component, Input, DynamicComponentLoader, ChangeDetectorRef} from '@angular/core'
 import {BodyOutputType} from './bodyOutputType'
 import {ToasterConfig} from './toaster-config'
 import {ToasterService, IClearWrapper} from './toaster.service'

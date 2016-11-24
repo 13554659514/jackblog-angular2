@@ -1,10 +1,8 @@
-import { Component, EventEmitter } from 'angular2/core'
+import { Component, EventEmitter } from '@angular/core'
 import { ArticleList } from '../../models'
-import { CustomTimePipe } from '../../utils/pipes'
 
 @Component({
 	selector: 'articles',
-	pipes: [CustomTimePipe],
 	inputs: ['articleList'],
 	template: `
 	<ul class="article-list list-unstyled clearfix">

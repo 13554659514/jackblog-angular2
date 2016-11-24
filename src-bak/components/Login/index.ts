@@ -1,24 +1,21 @@
-import {Component, Host, Inject, forwardRef } from 'angular2/core'
-import { Router, CanActivate, ComponentInstruction } from 'angular2/router'
+import {Component, Host, Inject, forwardRef } from '@angular/core'
+import { Router, CanActivate } from '@angular/router'
 import {
-  CORE_DIRECTIVES,
-	FORM_DIRECTIVES,
 	FormBuilder,
-	ControlGroup,
-	Control,
+	FormGroup,
+	FormControl,
 	Validators,
-	AbstractControl } from 'angular2/common'
+	AbstractControl } from '@angular/forms'
 import { emailValidator } from '../../utils/validator'
 import { GlobalValService, AuthService } from '../../services'
 import SnsLoginComponent from './snsLogin'
 
 @Component({
 	selector: 'login',
-	directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, SnsLoginComponent],
 	template: require('./index.html')
 })
 export default class Login {
-	signinForm: ControlGroup
+	signinForm: FormGroup
 	email: AbstractControl
 	password: AbstractControl
 	captcha: AbstractControl
@@ -53,7 +50,7 @@ export default class Login {
 			this.logins = logins
 		})
 	}
-	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
+	CanActivate() {
 		if(this.authService.getCookie('token')){
 			this._router.navigate(['Home'])
 		}

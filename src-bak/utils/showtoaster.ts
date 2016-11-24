@@ -1,5 +1,5 @@
-import { Injectable, bind } from 'angular2/core'
-import {Subject, BehaviorSubject, Observable, ReplaySubject} from 'rxjs'
+import { Injectable } from '@angular/core'
+import { Subject, BehaviorSubject, Observable, ReplaySubject } from 'rxjs'
 import { ToasterModel } from '../models'
 
 @Injectable()

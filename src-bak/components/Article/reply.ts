@@ -1,12 +1,10 @@
-import { Component, EventEmitter } from 'angular2/core'
+import { Component, EventEmitter } from '@angular/core'
 import { ReplyModel } from '../../models'
-import { FormatDatePipe } from '../../utils/pipes'
 
 @Component({
 	selector: 'reply',
 	inputs: ['replys', 'k'],
 	outputs: ['showReplyEvent'],
-	pipes: [FormatDatePipe],
 	template: `
 	<div class="reply-list">
 	  <div *ngFor="#reply of replys, #i = index" class="reply-item">
@@ -26,7 +24,7 @@ export default class ReplyComponent {
 	replys: ReplyModel
 	k:number
 	showReplyEvent: EventEmitter<any> = new EventEmitter<any>()
-	showReply(k,nickname){
+	showReply(k:any,nickname:String){
 		this.showReplyEvent.next({index:k,nickname:nickname})
 	}
 }

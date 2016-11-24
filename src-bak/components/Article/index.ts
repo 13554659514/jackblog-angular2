@@ -1,5 +1,5 @@
-import { Component, OnInit } from 'angular2/core'
-import { RouteParams, Router, CanActivate, ComponentInstruction } from 'angular2/router'
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute,Params, Router, CanActivate } from '@angular/router'
 import ArticleContentComponent from './content'
 import { ArticleDetailModel,PrenextArticleModel,ToasterModel, OptionsModel, CommentModel, ReplyModel} from '../../models'
 import { ArticleService, AuthService, TagService, CommentService } from '../../services'
@@ -11,7 +11,6 @@ import { ShowtoasterService } from '../../utils/showtoaster'
 
 @Component({
 	selector: 'article',
-	directives: [ArticleContentComponent, LikeComponent, PrenextComponent, CommentComponent, GotopComponent],
 	template: `
 	<div class="article-box">
 	  <article-content [articleDetail]="articleDetail"></article-content>
@@ -33,13 +32,12 @@ export default class ArticleComponent {
   options:OptionsModel
   commentList: CommentModel[]
 	constructor(
-		private _routeParams: RouteParams,
+		private route: ActivatedRoute,
 		private articleService: ArticleService,
 		private authService: AuthService,
 		private tagService: TagService,
 		private commentService: CommentService,
 		private showtoasterService: ShowtoasterService) {
-		this.aid = _routeParams.get('aid')
 		this.articleService.ArticleDetailSubject.subscribe((articleDetail:ArticleDetailModel)=>{
 			this.articleDetail = articleDetail
 		})
@@ -53,7 +51,13 @@ export default class ArticleComponent {
 			this.commentList = commentList
 		})
 	}
-	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
+	ngOnInit() {
+		this.route.params.forEach((params: Params) => {
+			this.aid = params['aid']
+		});
+	}
+
+	CanActivate() {
 		this.authService.userSubject.subscribe((user:Object)=>{
 		  this.user = user
 		  this.articleService.getArticleDetail(this.aid, this.user)
@@ -61,7 +65,7 @@ export default class ArticleComponent {
 		  this.commentService.getCommentList(this.aid)
 		})
 	}
-	handleToggleLike(event){
+	handleToggleLike(event:any){
 		if(this.user){
 			this.articleService.toggleLike(this.aid,this.articleDetail)
 		}else{
@@ -71,7 +75,7 @@ export default class ArticleComponent {
 	openLoginModal(){
 		this.showtoasterService.showModal()
 	}
-	handleSubmitComment(content){
+	handleSubmitComment(content:any){
 		if (content.trim() === '') {
 			this.showtoasterService.showToaster(new ToasterModel({content: '评论内容不能为空', type: 'error' }))
 		}
@@ -81,7 +85,7 @@ export default class ArticleComponent {
 	    this.openLoginModal()
 	  }
 	}
-	handleSubmitReply(cid,content){
+	handleSubmitReply(cid:any,content:any){
 		if (content.trim() === '') {
 			this.showtoasterService.showToaster(new ToasterModel({content: '评论内容不能为空', type: 'error' }))
 		}

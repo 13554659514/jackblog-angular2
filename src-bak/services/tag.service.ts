@@ -1,8 +1,8 @@
-import { Injectable, bind } from 'angular2/core'
+import { Injectable } from '@angular/core'
 import { TagListModel, OptionsModel, ArticleList } from '../models'
 import {Subject, BehaviorSubject, Observable, ReplaySubject} from 'rxjs'
 import { ResourceService } from '../utils/resources'
-import { Response } from 'angular2/http'
+import { Response } from '@angular/http'
 
 let initialArticleList: any[] = []
 
@@ -62,6 +62,6 @@ export class TagService {
 
 }
 
-export var TagServiceInjectables: Array<any> = [
-  bind(TagService).toClass(TagService)
-]
+// export var TagServiceInjectables: Array<any> = [
+//   bind(TagService).toClass(TagService)
+// ]

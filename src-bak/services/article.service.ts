@@ -1,8 +1,8 @@
-import { Injectable, bind } from 'angular2/core'
+import { Injectable } from '@angular/core'
 import { ArticleDetailModel,PrenextArticleModel,OptionsModel } from '../models'
 import { Subject, BehaviorSubject, Observable, ReplaySubject } from 'rxjs'
 import { ResourceService } from '../utils/resources'
-import { Response } from 'angular2/http'
+import { Response } from '@angular/http'
 import { AuthService } from './auth.service'
 
 @Injectable()
@@ -19,7 +19,7 @@ export class ArticleService {
 				let isLike = false
 				let article = res.json().data
 				if(user && user.likes){
-				  user.likes.map(item=>{
+				  user.likes.map((item:any)=>{
 				    if(item.toString() === article._id){
 				      isLike = true
 				    }
@@ -59,6 +59,6 @@ export class ArticleService {
 	}
 }
 
-export var ArticleServiceInjectables: Array<any> = [
-  bind(ArticleService).toClass(ArticleService)
-]
+// export var ArticleServiceInjectables: Array<any> = [
+//   bind(ArticleService).toClass(ArticleService)
+// ]
