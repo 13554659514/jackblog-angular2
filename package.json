@@ -44,6 +44,7 @@
     "angular2-cookies": "^0.1.0",
     "angular2-router-loader": "^0.3.4",
     "angular2-template-loader": "^0.6.0",
+    "angular2-toaster": "^1.0.2",
     "awesome-typescript-loader": "2.2.4",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
