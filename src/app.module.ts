@@ -5,21 +5,38 @@ import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr'
 //第三方模块
-import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap'
+//import { DropdownModule, ModalModule } from 'ng2-bootstrap/ng2-bootstrap'
 import { ToasterModule } from 'angular2-toaster/angular2-toaster'
-/*
- * Platform and Environment providers/directives/pipes
- */
+
+// 环境
 import { ENV_PROVIDERS } from './env'
-import { ROUTES } from './app.routes'
-
-// import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+// hmr service
 import { AppState, InternalStateType } from './app.service'
+// services
+import {
+  ResourceService,
+  ShowtoasterService,
+  AuthService,
+  ArticleService,
+  CommentService,
+  GlobalValService,
+  MobileService
+} from './services'
 
-// App is our top level component
+// components
 import { AppComponent } from './app.component'
-import { HomeComponent } from './components/Home'
-import { CustomTimePipe,FormatDatePipe } from './pipes'
+// import NavbarComponent from './common/Navbar'
+// import ModalComponent from './common/Modal'
+// import SnsLoginComponent from './common/Snslogin'
+//import { CustomTimePipe,FormatDatePipe } from './pipes'
+
+//模块
+import { AppRoutingModule } from './modules/app-routing'
+import { HomeModule } from './modules/Home'
+import { LoginModule } from './modules/Login'
+import { NavbarModule } from './modules/Navbar'
+import { BootstrapModule } from './modules/Bootstrap'
+import { AppDownloadsModule } from './modules/Appdownloads'
 //css
 import 'font-awesome/css/font-awesome.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -28,8 +45,14 @@ import './assets/styles/index.css'
 
 // Application wide providers
 const APP_PROVIDERS = [
-  //...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  ResourceService,
+  ShowtoasterService,
+  AuthService,
+  ArticleService,
+  CommentService,
+  GlobalValService,
+  MobileService
 ];
 
 type StoreType = {
@@ -44,18 +67,22 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent,
-    HomeComponent,
-    CustomTimePipe,
-    FormatDatePipe
+    //NavbarComponent,
+    //ModalComponent,
+    //SnsLoginComponent,
+    AppComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    DropdownModule,
+    AppRoutingModule,
+    BootstrapModule,
+    NavbarModule,
     ToasterModule,
-    RouterModule.forRoot(ROUTES)
+    HomeModule,
+    LoginModule,
+    AppDownloadsModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

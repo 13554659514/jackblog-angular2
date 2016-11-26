@@ -1,0 +1,54 @@
+<div class="signin-box">
+	<div class="signin-container">
+	    <h4 class="title">登 录</h4>
+		      <form class="signin-form form-horizontal" 
+		      	[ngFormModel]="signinForm"
+		      	(ngSubmit)="onSubmit(signinForm.value)">
+		    	    <div class="form-group">
+		    	  		<div class="input-group">
+		    	        <div class="input-group-addon">
+		    	        	<i class="fa fa-envelope-o"></i>
+		    	        </div>
+		    	        <input type="text" 
+		    	        	class="form-control" 
+		    	        	placeholder="邮箱"
+										[ngFormControl]="email">
+		    	      </div>
+		    	    </div>
+		          <div class="form-group">
+		        		<div class="input-group">
+		              <div class="input-group-addon"><i class="fa fa-unlock-alt"></i></div>
+		              <input type="password" 
+		              	class="form-control" 
+		              	placeholder="密码"
+										[ngFormControl]="password">
+		            </div>
+		          </div>
+		          <div class="form-group" >
+		          	<div class="col-xs-6 captcha-code">
+		          		<input class="form-control" 
+		          			type="text"
+		          			maxlength="6"
+		          			placeholder="验证码" 
+										[ngFormControl]="captcha">
+		          	</div>
+		          	<div class="col-xs-6 captcha-img">
+		          		<a href="javascript:;" (click)="changeCaptcha()">
+		          			<img [src]="captchaUrl" />
+		          		</a>
+		          	</div>
+
+		          </div>
+		          <div class="form-group">
+		          	<button type="submit" id="signin_btn" 
+		          		class="btn btn-primary btn-lg btn-block" 
+		          		[disabled]="!signinForm.valid">登 录</button>
+		          </div>
+		    	</form>
+		    	
+			<div class="login-sns">
+		      <p>您还可以通过以下方式直接登录</p>
+		      <sns-login [logins]="logins"></sns-login>
+		  </div>
+	</div>
+</div>

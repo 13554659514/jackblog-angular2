@@ -23,9 +23,3 @@ export function main(): Promise<any> {
 // needed for hmr
 // in prod this is replace for document ready
 bootloader(main);
-
-// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-// import { AppModule } from './app.module';
-// const platform = platformBrowserDynamic();
-// platform.bootstrapModule(AppModule);
-

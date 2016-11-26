@@ -1,9 +1,9 @@
   <div class="navbar-box navbar-skin">
     <div class="navbar-menu">
-        <a [routerLink]=" ['Home'] " class="navbar-item logo" [class.active]="location.path() !=='/appdownloads'" title="首页">
+        <a routerLink="/" class="navbar-item logo" routerLinkActive="active" title="首页">
           Hu
         </a>
-        <a [routerLink]=" ['AppDownloads'] " class="navbar-item mobile" title="移动应用">
+        <a routerLink="/appdownloads" routerLinkActive="active" class="navbar-item mobile" title="移动应用">
           <i class="fa fa-mobile"></i>
         </a>
     </div>   
@@ -32,12 +32,12 @@
           <a href="javascript:;" class="navbar-item expanded-logout" (click)="logout()" title="登出">
               <i class="fa fa-sign-out"></i>
           </a>
-          <a [routerLink]=" ['Settings'] " href="javascript:;" class="navbar-item expanded-avatar" title="{{user.nickname}}">          
+          <a routerLink="/settings" href="javascript:;" class="navbar-item expanded-avatar" title="{{user.nickname}}">          
             <img [src]="user.avatar || defaultAvatar" /> 
           </a>  
         </div>
         <div *ngIf="!token || !user">
-          <a [routerLink]=" ['Login'] " class="navbar-item" title="登录">
+          <a routerLink="/login" class="navbar-item" title="登录">
             <i class="fa fa-sign-in"></i>
           </a>    
         </div>
@@ -51,7 +51,7 @@
           </a>
           <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="split-button">
             <li role="menuitem">
-              <a class="dropdown-item" [routerLink]=" ['Settings'] "><i class="fa fa-cog"></i> 设置</a>
+              <a class="dropdown-item" routerLink="/settings"><i class="fa fa-cog"></i> 设置</a>
             </li>
             <li class="divider dropdown-divider"></li>
             <li role="menuitem">
@@ -63,7 +63,7 @@
         </div>
       </div>
       <div *ngIf="!token || !user" class="pull-right">
-        <a [routerLink]=" ['Login'] " class="shrink-login" title="登录">
+        <a routerLink="/login" class="shrink-login" title="登录">
             <i class="fa fa-sign-in"></i> 登录
         </a>
       </div>

@@ -15,9 +15,9 @@ import './toaster.css'
                 <i class="toaster-icon" [ngClass]="toasterconfig.iconClasses[toast.type]"></i>
                 <div [ngClass]="toast.toasterConfig.titleClass">{{toast.title}}</div>
                 <div [ngClass]="toast.toasterConfig.messageClass" [ngSwitch]="toast.bodyOutputType">
-                    <div *ngSwitchWhen="bodyOutputType.Component" id="componentBody"></div> 
-                    <div *ngSwitchWhen="bodyOutputType.TrustedHtml" [innerHTML]="toast.html"></div>
-                    <div *ngSwitchWhen="bodyOutputType.Default">{{toast.body}}</div>
+                    <div *ngSwitchCase="bodyOutputType.Component" id="componentBody"></div> 
+                    <div *ngSwitchCase="bodyOutputType.TrustedHtml" [innerHTML]="toast.html"></div>
+                    <div *ngSwitchCase="bodyOutputType.Default">{{toast.body}}</div>
                 </div>
             </div>
         </div>
