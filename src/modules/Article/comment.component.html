@@ -12,7 +12,7 @@
               </a>        
               <a class="author-name link-light">{{comment.user_id.nickname}}</a>
               <span class="reply-time">
-                {{comment.created | date}}
+                {{comment.created | date:'y.MM.dd  HH:mm'}}
               </span>
             </div>
             <p class="comment-content">{{comment.content}}</p>
@@ -44,7 +44,8 @@
 
       <form *ngIf="user" #f="ngForm" class="new_comment" (ngSubmit)="submitComment()">
         <div class="comment-text">
-          <textarea 
+          <textarea
+            name="commentContent"
             maxLength="2000" 
             v-model="newCommentContent" 
             placeholder="写下你的评论…" 

@@ -14,7 +14,7 @@ import { ReplyModel } from '../../models'
 	    </p>
 	    <div class="reply-footer text-right">
 	      <a class="reply" href="javascript:;" (click)="showReply(k,reply.user_info.nickname)" >回复</a>
-	      <span class="reply-time pull-left">{{ reply.created | date }}</span>
+	      <span class="reply-time pull-left">{{ reply.created | date:'y.MM.dd  HH:mm' }}</span>
 	    </div>
 	  </div>
 	</div>
