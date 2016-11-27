@@ -20,6 +20,7 @@ export class ResourceService {
 				opts.headers.append('Authorization',
 					'Bearer ' + Cookie.load('token').replace(/(^\")|(\"$)/g, ''))
 			}
+			opts.withCredentials = true
 			return opts
 		}
 		//登录请求.

@@ -53,7 +53,7 @@ export class AuthService {
 							type: 'success'
 						})
 						this.showtoasterService.showToaster(toasterInfo)
-						this._router.navigate(['Home'])
+						this._router.navigate(['/'])
 					},(err:any)=>{
 						let toasterInfo = new ToasterModel({
 							content: err.json().error_msg || '登录失败',
@@ -73,7 +73,7 @@ export class AuthService {
 			this.deleteCookie('token')
 			this.tokenSubject.next('')
 			this.userSubject.next(this.authInitialState.user)
-			this._router.navigate(['Home'])
+			this._router.navigate(['/'])
 		}
 
 		updateUser(data:Object):void{

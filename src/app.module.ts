@@ -34,6 +34,8 @@ import { SharedModule } from './modules/Shared'
 import { AppDownloadsModule } from './modules/Appdownloads'
 import { SettingsModule } from './modules/Settings'
 import { ArticleModule } from './modules/Article'
+import { CoreModule } from './modules/Core'
+
 //css
 import 'font-awesome/css/font-awesome.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -43,7 +45,6 @@ import './assets/styles/index.css'
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  ResourceService,
   AuthService,
   ArticleService,
   CommentService,
@@ -66,8 +67,7 @@ type StoreType = {
   ],
   imports: [ // import Angular's modules
     BrowserModule,
-    FormsModule,
-    HttpModule,
+    CoreModule,
     AppRoutingModule,
     SharedModule,
     NavbarModule,
