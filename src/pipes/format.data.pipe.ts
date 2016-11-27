@@ -1,7 +1,7 @@
-import { Pipe } from '@angular/core'
+import { Pipe,PipeTransform } from '@angular/core'
 
 @Pipe({ name: 'formatDate' })
-export class FormatDatePipe {
+export class FormatDatePipe implements PipeTransform {
 	transform(time: string): string {
 		let tmpDate = new Date(time)
 		let year = tmpDate.getFullYear()

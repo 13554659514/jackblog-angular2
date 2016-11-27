@@ -7,7 +7,7 @@ import { ArticleList } from '../../models'
 	template: `
 	<ul class="article-list list-unstyled clearfix">
 		<li *ngFor="let article of articleList" class="article-item" [class.have-img]="article.images.length > 0">
-			<a *ngIf="article.images.length > 0" [routerLink]="['Article', {aid:article._id}]" class="wrap-img">
+			<a *ngIf="article.images.length > 0" [routerLink]="['/article', article._id]" class="wrap-img">
 				<img [src]="article.images[0].url + '-100x100'" />
 			</a>
 			<div>
@@ -15,7 +15,7 @@ import { ArticleList } from '../../models'
 			  <span class="time">{{ article.publish_time | customTime }}</span>
 			  </p>
 			  <h4 class="title">
-			  	<a [routerLink]="['Article', {aid:article._id}]" class="link-title">{{article.title}}</a>
+			  	<a [routerLink]="['/article', article._id]" class="link-title">{{article.title}}</a>
 			  </h4>
 			  <div class="list-footer">
 			    <span>阅读 {{article.visit_count}}</span>

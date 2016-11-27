@@ -1,13 +1,14 @@
-import { Pipe } from '@angular/core'
+import { Pipe,PipeTransform } from '@angular/core'
 
 @Pipe({ name: 'customTime' })
-export class CustomTimePipe {
+export class CustomTimePipe implements PipeTransform {
 	minuteTime: number = 60 * 1000
 	hourTime: number = 60 * this.minuteTime
 	dayTime: number = 24 * this.hourTime
 	monthTime: number = this.dayTime * 30
 	yearTime: number = this.monthTime * 12
 	nowTime:number = new Date().getTime()
+
 	transform(item: string): string {
 		let publishTime:number = new Date(item).getTime();
 		let historyTime:number = this.nowTime - publishTime

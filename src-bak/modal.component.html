@@ -2,14 +2,13 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title text-center">请用以下方式登录</h4>
+        <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Large modal</h4>
       </div>
       <div class="modal-body">
-          <div class="portlet-body">
-            <div class="login-sns">
-              <sns-login [logins]="logins"></sns-login>
-            </div>
-          </div>
+        ...
       </div>
     </div>
   </div>

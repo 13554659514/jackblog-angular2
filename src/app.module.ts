@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr'
 //第三方模块
-//import { DropdownModule, ModalModule } from 'ng2-bootstrap/ng2-bootstrap'
+// import { DropdownModule, ModalModule } from 'ng2-bootstrap/ng2-bootstrap'
 import { ToasterModule } from 'angular2-toaster/angular2-toaster'
 
 // 环境
@@ -25,18 +25,15 @@ import {
 
 // components
 import { AppComponent } from './app.component'
-// import NavbarComponent from './common/Navbar'
-// import ModalComponent from './common/Modal'
-// import SnsLoginComponent from './common/Snslogin'
-//import { CustomTimePipe,FormatDatePipe } from './pipes'
-
 //模块
 import { AppRoutingModule } from './modules/app-routing'
 import { HomeModule } from './modules/Home'
 import { LoginModule } from './modules/Login'
 import { NavbarModule } from './modules/Navbar'
-import { BootstrapModule } from './modules/Bootstrap'
+import { SharedModule } from './modules/Shared'
 import { AppDownloadsModule } from './modules/Appdownloads'
+import { SettingsModule } from './modules/Settings'
+import { ArticleModule } from './modules/Article'
 //css
 import 'font-awesome/css/font-awesome.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -47,12 +44,10 @@ import './assets/styles/index.css'
 const APP_PROVIDERS = [
   AppState,
   ResourceService,
-  ShowtoasterService,
   AuthService,
   ArticleService,
   CommentService,
-  GlobalValService,
-  MobileService
+  GlobalValService
 ];
 
 type StoreType = {
@@ -67,9 +62,6 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    //NavbarComponent,
-    //ModalComponent,
-    //SnsLoginComponent,
     AppComponent
   ],
   imports: [ // import Angular's modules
@@ -77,12 +69,14 @@ type StoreType = {
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    BootstrapModule,
+    SharedModule,
     NavbarModule,
     ToasterModule,
     HomeModule,
     LoginModule,
-    AppDownloadsModule
+    AppDownloadsModule,
+    SettingsModule,
+    ArticleModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

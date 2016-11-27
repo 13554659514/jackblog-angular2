@@ -7,8 +7,9 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component'
 	templateUrl: './modal.component.html'
 })
 export default class ModalComponent implements OnInit {
-	logins: string[]
 	@ViewChild('childModal') public childModal:ModalDirective
+
+	logins: string[]
 
 	constructor(
 		private authService: AuthService,

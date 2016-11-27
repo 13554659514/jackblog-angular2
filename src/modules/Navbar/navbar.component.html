@@ -1,6 +1,6 @@
   <div class="navbar-box navbar-skin">
     <div class="navbar-menu">
-        <a routerLink="/" class="navbar-item logo" routerLinkActive="active" title="首页">
+        <a [routerLinkActiveOptions]="{exact: true}" routerLink="/" class="navbar-item logo" routerLinkActive="active" title="首页">
           Hu
         </a>
         <a routerLink="/appdownloads" routerLinkActive="active" class="navbar-item mobile" title="移动应用">
