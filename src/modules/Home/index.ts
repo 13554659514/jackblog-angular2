@@ -1,10 +1,6 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { HttpModule } from '@angular/http'
-import { FormsModule } from '@angular/forms'
+import { SharedModule } from '../Shared'
 import { Routes, RouterModule } from '@angular/router'
-
-import { CustomTimePipe } from '../../pipes'
 
 import HomeComponent from './home.component'
 import SidebarComponent from './sidebar.component'
@@ -13,19 +9,15 @@ import ArticleListComponent from './articles.component'
 import LoadMoreComponent from './loadmore.component'
 import FooterComponent from './footer.component'
 
-import { TagService } from '../../services'
-
 @NgModule({
-  imports: [ CommonModule,FormsModule,HttpModule,RouterModule ],
+  imports: [ SharedModule,RouterModule ],
   declarations: [
     HomeComponent,
     SidebarComponent,
     TagsComponent,
     ArticleListComponent,
     LoadMoreComponent,
-    FooterComponent,
-    CustomTimePipe
-  ],
-  providers: [ TagService ]
+    FooterComponent
+  ]
 })
 export class HomeModule {}

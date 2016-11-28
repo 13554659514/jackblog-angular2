@@ -1,14 +1,12 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { HttpModule } from '@angular/http'
-import { FormsModule } from '@angular/forms'
 import { Routes, RouterModule } from '@angular/router'
 import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap'
+import { SharedModule } from '../Shared'
 
 import NavbarComponent from './navbar.component'
 
 @NgModule({
-  imports: [ CommonModule,RouterModule,HttpModule,DropdownModule ],
+  imports: [ SharedModule,RouterModule,DropdownModule ],
   declarations: [
     NavbarComponent
   ],

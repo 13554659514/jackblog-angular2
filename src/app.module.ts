@@ -4,37 +4,28 @@ import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr'
+
 //第三方模块
-// import { DropdownModule, ModalModule } from 'ng2-bootstrap/ng2-bootstrap'
 import { ToasterModule } from 'angular2-toaster/angular2-toaster'
 
 // 环境
 import { ENV_PROVIDERS } from './env'
 // hmr service
 import { AppState, InternalStateType } from './app.service'
-// services
-import {
-  ResourceService,
-  ShowtoasterService,
-  AuthService,
-  ArticleService,
-  CommentService,
-  GlobalValService,
-  MobileService
-} from './services'
 
 // components
 import { AppComponent } from './app.component'
 //模块
+import { CoreModule } from './modules/Core'
+import { SharedModule } from './modules/Shared'
 import { AppRoutingModule } from './modules/app-routing'
 import { HomeModule } from './modules/Home'
 import { LoginModule } from './modules/Login'
 import { NavbarModule } from './modules/Navbar'
-import { SharedModule } from './modules/Shared'
 import { AppDownloadsModule } from './modules/Appdownloads'
 import { SettingsModule } from './modules/Settings'
 import { ArticleModule } from './modules/Article'
-import { CoreModule } from './modules/Core'
+import { NotFoundModule } from './modules/Notfound'
 
 //css
 import 'font-awesome/css/font-awesome.css'
@@ -42,30 +33,15 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'jackblog-sass/dist/index.css'
 import './assets/styles/index.css'
 
-// Application wide providers
-const APP_PROVIDERS = [
-  AppState,
-  AuthService,
-  ArticleService,
-  CommentService,
-  GlobalValService
-];
-
 type StoreType = {
   state: InternalStateType,
   restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
 
-/**
- * `AppModule` is the main entry point into Angular2's bootstraping process
- */
+
 @NgModule({
-  bootstrap: [ AppComponent ],
-  declarations: [
-    AppComponent
-  ],
-  imports: [ // import Angular's modules
+  imports: [
     BrowserModule,
     CoreModule,
     AppRoutingModule,
@@ -76,11 +52,16 @@ type StoreType = {
     LoginModule,
     AppDownloadsModule,
     SettingsModule,
-    ArticleModule
+    ArticleModule,
+    NotFoundModule
   ],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
+  providers: [
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    AppState
+  ],
+  bootstrap: [ AppComponent ],
+  declarations: [
+    AppComponent
   ]
 })
 export class AppModule {

@@ -1,23 +1,35 @@
-import { NgModule } from '@angular/core'
+import { NgModule,ModuleWithProviders,Optional,SkipSelf } from '@angular/core'
 import { CommonModule }  from '@angular/common'
-import { HttpModule } from '@angular/http'
-import { FormsModule } from '@angular/forms'
-import { ResourceService } from '../../services'
+import {
+  ResourceService,
+  AuthService,
+  ArticleService,
+  TagService,
+  CommentService,
+  GlobalValService,
+  MobileService,
+  ShowtoasterService
+} from '../../services'
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HttpModule,
-        FormsModule,
-    ],
+    imports: [ CommonModule ],
     providers: [
-      ResourceService
+      ResourceService,
+      AuthService,
+      TagService,
+      ArticleService,
+      CommentService,
+      GlobalValService,
+      MobileService,
+      ShowtoasterService
     ],
-    declarations: [],
-    exports: [
-        CommonModule,
-        HttpModule,
-        FormsModule,
-    ]
+    declarations: []
 })
-export class CoreModule {}
+export class CoreModule {
+  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error(
+        'CoreModule is already loaded. Import it in the AppModule only');
+    }
+  }
+}

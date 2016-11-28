@@ -1,9 +1,7 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { HttpModule } from '@angular/http'
+import { SharedModule } from '../Shared'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { Routes, RouterModule } from '@angular/router'
-import { SharedModule } from '../Shared'
 import ArticleComponent  from './article.component'
 import CommentComponent  from './comment.component'
 import ContentComponent  from './content.component'
@@ -12,7 +10,14 @@ import ReplyComponent  from './reply.component'
 import PrenextComponent  from './prenext.component'
 
 @NgModule({
-  imports: [ CommonModule,FormsModule,ReactiveFormsModule,HttpModule,RouterModule,SharedModule ],
-  declarations: [ ArticleComponent,CommentComponent,ContentComponent,LikeComponent,ReplyComponent,PrenextComponent ]
+  imports: [ SharedModule,ReactiveFormsModule,RouterModule ],
+  declarations: [
+    ArticleComponent,
+    CommentComponent,
+    ContentComponent,
+    LikeComponent,
+    ReplyComponent,
+    PrenextComponent
+  ]
 })
 export class ArticleModule {}

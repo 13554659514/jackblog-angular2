@@ -5,7 +5,7 @@ import { LoginRoutes } from '../Login/login.routes';
 import { AppDownloadsRoutes } from '../Appdownloads/appdownloads.routes'
 import { SettingsRoutes } from '../Settings/settings.routes'
 import { ArticleRoutes } from '../Article/article.routes'
-import NotFoundComponent from './notfound.component'
+import { NotFoundRoutes } from '../Notfound/notfound.routes'
 
 const routes: Routes = [
   ...HomeRoutes,
@@ -13,19 +13,15 @@ const routes: Routes = [
   ...AppDownloadsRoutes,
   ...SettingsRoutes,
   ...ArticleRoutes,
-  {
-    path:'**',
-    component: NotFoundComponent
-  }
+  ...NotFoundRoutes
 ]
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)
   ],
-  declarations: [ NotFoundComponent ],
   exports: [
-    RouterModule,NotFoundComponent
+    RouterModule
   ]
 })
 export class AppRoutingModule {}
