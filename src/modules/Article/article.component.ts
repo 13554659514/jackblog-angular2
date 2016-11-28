@@ -33,12 +33,13 @@ export default class ArticleComponent implements OnInit {
 		private tagService: TagService,
 		private commentService: CommentService,
 		private showtoasterService: ShowtoasterService
-	) {}
+	) {
+		this.authService.userSubject.subscribe((user:Object)=>{
+			this.user = user
+		})
+	}
 
 	ngOnInit() {
-		this.route.params.forEach((params: Params) => {
-			this.aid = params['aid']
-		})
 		this.articleService.ArticleDetailSubject.subscribe((articleDetail:ArticleDetailModel)=>{
 			this.articleDetail = articleDetail
 		})
@@ -51,17 +52,15 @@ export default class ArticleComponent implements OnInit {
 		this.commentService.commentListSubject.subscribe((commentList:CommentModel[])=>{
 			this.commentList = commentList
 		})
-
-		this.authService.userSubject.subscribe((user:Object)=>{
-       this.user = user
-    })
-		// this.user = this.route.snapshot.data['user']
-		// console.log(this.user)
-		this.articleService.getArticleDetail(this.aid, this.user)
-    this.articleService.getPrenext(this.aid,this.options)
-    this.commentService.getCommentList(this.aid)
+		this.route.params.subscribe(params => {
+				this.aid = params['aid']
+				this.authService.userSubject.subscribe((user:Object)=>{
+					this.articleService.getArticleDetail(this.aid, this.user)
+					this.articleService.getPrenext(this.aid,this.options)
+					this.commentService.getCommentList(this.aid)
+				})
+		})
 	}
-
 
 	handleToggleLike(event:any){
 		if(this.user){
