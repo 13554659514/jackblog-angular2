@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { TagService,GlobalValService } from '../../services'
 import { TagListModel, OptionsModel, ArticleList } from '../../models'
 
@@ -22,7 +22,7 @@ import { TagListModel, OptionsModel, ArticleList } from '../../models'
 	<footerbar></footerbar>
 	`
 })
-export default class HomeComponent {
+export default class HomeComponent implements OnInit {
 	tagList: TagListModel
 	options: OptionsModel
 	indexImg: any
@@ -31,23 +31,28 @@ export default class HomeComponent {
 	isMore: boolean
 	defaultIndexImg: any = require('../../assets/images/shanghai.jpg')
 
-	constructor(public tagService: TagService, globalValService: GlobalValService) {
-		globalValService.indexImgSubject.subscribe((indexImg:string)=>{
+	constructor(
+		private tagService: TagService,
+		private globalValService: GlobalValService
+	) {}
+
+	ngOnInit(){
+		this.globalValService.indexImgSubject.subscribe((indexImg:string)=>{
 			this.indexImg = indexImg || this.defaultIndexImg
 		})
-		tagService.tagListSubject.subscribe((tagList:TagListModel)=>{
+		this.tagService.tagListSubject.subscribe((tagList:TagListModel)=>{
 			this.tagList = tagList
 		})
-		tagService.optionSubject.subscribe((options:OptionsModel)=>{
+		this.tagService.optionSubject.subscribe((options:OptionsModel)=>{
 			this.options = options
 		})
-		tagService.isFetchingSubject.subscribe((isFetching:boolean)=>{
+		this.tagService.isFetchingSubject.subscribe((isFetching:boolean)=>{
 			this.isFetching = isFetching
 		})
-		tagService.isMoreSubject.subscribe((isMore: boolean) => {
+		this.tagService.isMoreSubject.subscribe((isMore: boolean) => {
 			this.isMore = isMore
 		})
-		tagService.articleListSubject.subscribe((articleList:any[])=>{
+		this.tagService.articleListSubject.subscribe((articleList:any[])=>{
 			this.articleList = articleList
 		})
 	}

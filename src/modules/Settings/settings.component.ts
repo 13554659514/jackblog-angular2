@@ -33,12 +33,6 @@ export default class SettingsComponent implements OnInit {
 			this.userNickname = user && user.nickname || ''
 		})
 	}
-	// CanActivate() {
-	// 	if(!this.authService.getCookie('token')){
-	// 		this._router.navigate(['Login'])
-	// 	}
-	// 	return true
-	// }
 
 	onSubmit(user: Object): void {
 		//提交登录
