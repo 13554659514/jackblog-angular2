@@ -39,7 +39,6 @@
     "@angularclass/hmr": "^1.2.2",
     "@angularclass/hmr-loader": "^3.0.2",
     "@types/hammerjs": "^2.0.33",
-    "@types/moment": "^2.13.0",
     "@types/node": "^6.0.48",
     "@types/webpack": "^2.0.0",
     "angular2-cookies": "^0.1.0",

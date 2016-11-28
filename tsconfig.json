@@ -26,8 +26,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "src-bak",
-    "src-bak2"
+    "logs"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true

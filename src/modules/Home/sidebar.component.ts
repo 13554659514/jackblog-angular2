@@ -18,7 +18,6 @@ export default class SidebarComponent {
 	indexImg:string
 	constructor() {}
 	setStyles(){
-
 		return {
 			backgroundImage: 'url(' + (this.indexImg) + ')'
 		}
