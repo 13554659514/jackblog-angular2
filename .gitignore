@@ -5,6 +5,7 @@ npm-debug.log*
 # Runtime data
 *.pid
 .tmp
+.vscode
 
 ###############
 .DS_Store
