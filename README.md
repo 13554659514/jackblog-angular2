@@ -18,18 +18,18 @@ Jackblog 是使用 Node.js + MongoDB + 其它客户端框架开发的个人博�
 $ git clone git@github.com:jackhutu/jackblog-angular2.git
 $ cd jackblog-angular2
 $ npm install
-$ gulp serve
+$ npm run dev
 ```
 
 ## 打包  
  
 ```
-$ gulp build 或 gulp serve:dist
+$ npm run build 或 npm run start
 ```
 
 ## 线上布署
 ```
-$ pm2 start process.json
+$ npm run pm2-start
 ```
 
 ## License
