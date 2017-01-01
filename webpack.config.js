@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
+const { CheckerPlugin } = require('awesome-typescript-loader')
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin')
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
@@ -129,7 +129,7 @@ var config = {
 
 if (debug) {
   config.plugins.push(
-    new ForkCheckerPlugin(),
+    new CheckerPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   )
