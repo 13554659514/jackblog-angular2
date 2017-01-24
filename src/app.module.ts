@@ -18,7 +18,7 @@ import { AppComponent } from './app.component'
 //模块
 import { CoreModule } from './modules/Core'
 import { SharedModule } from './modules/Shared'
-import { AppRoutingModule } from './modules/app-routing'
+import { AppRoutingModule } from './modules/App-routing'
 import { HomeModule } from './modules/Home'
 import { LoginModule } from './modules/Login'
 import { NavbarModule } from './modules/Navbar'
