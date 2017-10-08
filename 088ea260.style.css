@@ -9580,6 +9580,19 @@ input.ng-valid.ng-dirty {
 .navbar-shrink a.vue {
   background-position: -40px -120px;
 }
+@media (min-width: 320px) and (max-width: 400px) {
+  .navbar-shrink .navbar-item {
+    display: none;
+  }
+  .navbar-shrink .shrink-login {
+    margin-right: 0px;
+  }
+}
+@media (max-width: 319px) {
+  .navbar-shrink a.expanded-var {
+    display: none;
+  }
+}
 .navbar-menu a.navbar-item {
   float: left;
   width: 45px;
@@ -10193,6 +10206,10 @@ ul.sort-tags .loader-tiny {
   margin: 0 auto 25px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+}
+.signin-form .form-group {
+  margin-left: 0;
+  margin-right: 0;
 }
 .signin-form input {
   height: 44px;
