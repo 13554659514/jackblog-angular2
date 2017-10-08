@@ -6,6 +6,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader')
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin')
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const env = process.env.NODE_ENV || 'development'
 const debug = env !== 'production'
@@ -61,7 +62,10 @@ var config = {
     new ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
       path.join(__dirname, 'src')
-    )
+    ),
+    new CopyWebpackPlugin([{
+      from: path.join(__dirname, 'src/CNAME'), to: path.join(__dirname, 'dist')
+    }])
   ],
   module: {
     rules: [
